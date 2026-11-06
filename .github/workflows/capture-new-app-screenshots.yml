@@ -1,0 +1,86 @@
+name: Capture EDC Pocket and Command screenshots
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/capture-new-app-screenshots.yml"
+      - "scripts/capture-new-app-screenshots.mjs"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout portfolio
+        uses: actions/checkout@v4
+        with:
+          path: portfolio
+          persist-credentials: true
+
+      - name: Checkout EDC Pocket source
+        uses: actions/checkout@v4
+        with:
+          repository: DownAirOnly/edc-planner
+          ref: main
+          path: edc
+          persist-credentials: false
+
+      - name: Checkout Command source
+        uses: actions/checkout@v4
+        with:
+          repository: DownAirOnly/planner
+          ref: main
+          path: command
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install screenshot browser
+        run: |
+          cd portfolio
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Serve real applications locally
+        run: |
+          python3 -m http.server 4193 --directory edc > /tmp/edc-server.log 2>&1 &
+          python3 -m http.server 4194 --directory command > /tmp/command-server.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4193/ >/dev/null && curl -fsS http://127.0.0.1:4194/ >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/edc-server.log /tmp/command-server.log
+          exit 1
+
+      - name: Capture real screens with fictional example data
+        run: node portfolio/scripts/capture-new-app-screenshots.mjs portfolio/assets/screenshots
+
+      - name: Commit captures to GitHub Pages main
+        run: |
+          cd portfolio
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/screenshots/edc-lineup.png assets/screenshots/edc-plan.png assets/screenshots/command-home.png assets/screenshots/command-projects.png
+          if git diff --staged --quiet; then
+            echo "Screenshots already current."
+          else
+            git commit -m "Capture EDC Pocket and Command screens with fictional data"
+            git push origin HEAD:main
+          fi
+
+      - name: Upload captures for inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-new-app-screenshots
+          path: |
+            portfolio/assets/screenshots/edc-*.png
+            portfolio/assets/screenshots/command-*.png
+          if-no-files-found: ignore
