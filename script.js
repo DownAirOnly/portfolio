@@ -20,6 +20,10 @@
     'everyday-lifting': { name: 'Everyday — Lifting', url: 'https://downaironly.github.io/fitness-tracker/', image: './assets/screenshots/everyday-lifting.png' },
     botanica: { name: 'Botanica', url: 'https://downaironly.github.io/botanica/', image: './assets/screenshots/botanica-today.png' },
     'botanica-inventory': { name: 'Botanica — Inventory', url: 'https://downaironly.github.io/botanica/', image: './assets/screenshots/botanica-inventory.png' },
+    edc: { name: 'EDC Pocket — Lineup', url: 'https://downaironly.github.io/edc-planner/', image: './assets/screenshots/edc-lineup.png' },
+    'edc-plan': { name: 'EDC Pocket — My Plan', url: 'https://downaironly.github.io/edc-planner/', image: './assets/screenshots/edc-plan.png' },
+    command: { name: 'Command — Dashboard', url: 'https://downaironly.github.io/planner/', image: './assets/screenshots/command-home.png' },
+    'command-projects': { name: 'Command — Projects', url: 'https://downaironly.github.io/planner/', image: './assets/screenshots/command-projects.png' },
     playlists: { name: 'USF Playlist Catalog', url: 'https://downaironly.github.io/usf-playlist-catalog/' }
   };
   const dialog = document.getElementById('screenshot-dialog');
@@ -31,7 +35,8 @@
       const info = screenshots[button.dataset.preview];
       if (!info) return;
       heading.textContent = info.name + ' — public screenshot';
-      img.alt = 'Capture of the public ' + info.name + ' website';
+      img.alt = 'Screenshot of ' + info.name;
+      img.removeAttribute('src');
       img.src = info.image || 'https://image.thum.io/get/width/1000/crop/900/maxAge/24/' + info.url;
       link.href = info.url;
       if (typeof dialog.showModal === 'function') dialog.showModal();
