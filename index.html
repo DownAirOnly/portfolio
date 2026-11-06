@@ -2,98 +2,132 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0b1115">
-  <meta name="description" content="Nick builds focused web apps and practical systems—from personal tracking tools to inventory workflows. Explore selected software projects and their stories.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111715">
+  <meta name="description" content="Nick's portfolio: Everyday, Botanica, and the USF Playlist Catalog. Web apps and sites made in Orlando, Florida.">
+  <meta property="og:title" content="Nick | Projects">
+  <meta property="og:description" content="Three web projects: Everyday, Botanica and USF Playlist Catalog.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Nick — Software Builder">
-  <meta property="og:description" content="Practical software. Thoughtful systems. Real projects.">
-  <title>Nick — Software Builder</title>
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <meta property="og:url" content="https://downaironly.github.io/portfolio/">
+  <title>Nick | Projects</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./script.js"></script>
+  <script src="./script.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="site-shell">
-    <header class="site-header" id="top">
-      <a class="brand" href="#top" aria-label="Nick, back to top"><span class="brand-mark" aria-hidden="true">n<span class="brand-dot">.</span></span><span class="brand-name">nick<span class="muted-mark"> / portfolio</span></span></a>
+  <a class="skip-link" href="#main">Skip to projects</a>
+  <div class="shell" id="top">
+    <header class="header">
+      <a class="brand" href="#top" aria-label="Back to top">n<span>.</span></a>
       <nav class="nav" aria-label="Main navigation">
-        <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
       </nav>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light theme" title="Switch theme"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button>
+      <button class="theme-toggle" id="theme-toggle" type="button" title="Switch color theme" aria-label="Switch to light mode"><span class="theme-icon" aria-hidden="true">◐</span></button>
     </header>
-
     <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
+      <section class="hero" aria-labelledby="hero-heading">
         <div class="hero-copy">
-          <div class="eyebrow"><span class="signal"></span> INDEPENDENT SOFTWARE BUILDER <span class="eyebrow-sep">/</span> ORLANDO, FL</div>
-          <h1 id="hero-title">I make software<br>that <span class="serif-accent">makes sense.</span></h1>
-          <p class="hero-description">I turn everyday problems into useful, intuitive tools. From tracking workouts and finances to managing real inventory, I care about making complicated workflows feel straightforward.</p>
-          <div class="hero-actions"><a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a><a class="button button-quiet" href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
-        </div>
-        <div class="hero-art" aria-label="Abstract illustration of interconnected software modules" role="img">
-          <div class="art-topline"><span>WORKFLOW / 001</span><span class="art-top-dot"></span><span>SYSTEMS IN MOTION</span></div>
-          <div class="art-field">
-            <div class="art-glow"></div>
-            <div class="art-orbit art-orbit-one"></div><div class="art-orbit art-orbit-two"></div>
-            <div class="art-centre"><div class="art-centre-symbol">N<span>.</span></div><div class="art-centre-text">BUILD<br>ITERATE<br>IMPROVE</div></div>
-            <div class="art-module art-module-a"><span class="module-icon">◫</span><span>PRODUCT</span><b>01</b></div>
-            <div class="art-module art-module-b"><span class="module-icon">⌘</span><span>SYSTEMS</span><b>02</b></div>
-            <div class="art-module art-module-c"><span class="module-icon">≋</span><span>DATA</span><b>03</b></div>
-            <div class="art-cross art-cross-a">+</div><div class="art-cross art-cross-b">+</div>
+          <div class="intro"><span class="intro-dot"></span> Nick · Orlando, Florida</div>
+          <h1 id="hero-heading">I build <em>websites</em><br>and <em>apps.</em></h1>
+          <p>I work in theme park operations and build software outside of work. My projects start with things I want to organize, track or make easier.</p>
+          <div class="hero-actions">
+            <a class="btn btn-accent" href="#projects">View projects <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-outline" href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">My GitHub <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="art-bottomline"><span>FUNCTION OVER FLASH</span><span>© 2026</span></div>
+        </div>
+        <aside class="hero-directory" aria-label="Quick links to projects">
+          <div class="directory-top"><span class="directory-logo" aria-hidden="true">n<span>.</span></span><span>PROJECT INDEX</span><span>2026</span></div>
+          <p class="directory-heading">Built and<br><em>being built.</em></p>
+          <div class="directory-list">
+            <a href="https://downaironly.github.io/fitness-tracker/" target="_blank" rel="noopener noreferrer"><span class="directory-number">01</span><span class="directory-name">Everyday</span><span aria-hidden="true">↗</span></a><a href="https://downaironly.github.io/botanica/" target="_blank" rel="noopener noreferrer"><span class="directory-number">02</span><span class="directory-name">Botanica</span><span aria-hidden="true">↗</span></a><a href="https://downaironly.github.io/usf-playlist-catalog/" target="_blank" rel="noopener noreferrer"><span class="directory-number">03</span><span class="directory-name">USF Playlist Catalog</span><span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="directory-foot">Click any project to visit its site.</p>
+        </aside>
+      </section>
+      <section class="projects-section" id="projects" aria-labelledby="projects-heading">
+        <div class="section-heading"><div><span class="overline">WORK</span><h2 id="projects-heading">Projects<span class="dot">.</span></h2><p>All three are online. Open a site, browse the code, or enlarge its screenshot.</p></div><span class="count">01—03</span></div>
+        <div class="project-grid">
+    <article class="project" id="everyday" aria-labelledby="everyday-title">
+      <div class="project-head"><span class="project-index">01 / Personal app</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+      <a class="screenshot" href="https://downaironly.github.io/fitness-tracker/" target="_blank" rel="noopener noreferrer" aria-label="Open Everyday website">
+        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>Open Everyday</span></span>
+        <img src="https://image.thum.io/get/width/1000/crop/900/maxAge/24/https://downaironly.github.io/fitness-tracker/" alt="Capture of the public Everyday website" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
+        <span class="screenshot-label">OPEN LIVE WEBSITE <span aria-hidden="true">↗</span></span>
+      </a>
+      <div class="project-main">
+        <div class="project-title-row"><h3 id="everyday-title"><a href="https://downaironly.github.io/fitness-tracker/" target="_blank" rel="noopener noreferrer">Everyday <span aria-hidden="true">↗</span></a></h3><span class="kind">Personal app</span></div>
+        <p class="project-description">An app I use to keep food logs, workouts, body measurements and paycheck budgeting in one place.</p>
+        <div class="stack" aria-label="Technology used"><span>JavaScript</span><span>Firebase</span><span>PWA</span></div>
+        <details class="more"><summary>What it does <span aria-hidden="true">+</span></summary><ul><li>Workout Buddy for logging sets and routines</li><li>Food and protein tracking</li><li>Paycheck-based budgeting and account sync</li></ul></details>
+        <div class="project-actions">
+          <a class="action primary" href="https://downaironly.github.io/fitness-tracker/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a>
+          <a class="action" href="https://github.com/DownAirOnly/fitness-tracker" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
+          <button class="action preview-button" type="button" data-preview="everyday" aria-label="Enlarge screenshot of Everyday">Screenshot <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="project-note">Private data is behind sign-in.</p>
+      </div>
+    </article>
+    <article class="project" id="botanica" aria-labelledby="botanica-title">
+      <div class="project-head"><span class="project-index">02 / Inventory app</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+      <a class="screenshot" href="https://downaironly.github.io/botanica/" target="_blank" rel="noopener noreferrer" aria-label="Open Botanica website">
+        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>Open Botanica</span></span>
+        <img src="https://image.thum.io/get/width/1000/crop/900/maxAge/24/https://downaironly.github.io/botanica/" alt="Capture of the public Botanica website" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
+        <span class="screenshot-label">OPEN LIVE WEBSITE <span aria-hidden="true">↗</span></span>
+      </a>
+      <div class="project-main">
+        <div class="project-title-row"><h3 id="botanica-title"><a href="https://downaironly.github.io/botanica/" target="_blank" rel="noopener noreferrer">Botanica <span aria-hidden="true">↗</span></a></h3><span class="kind">Inventory app</span></div>
+        <p class="project-description">An inventory and production app for my family's herbal business. It tracks ingredients, recipes, suppliers and finished products.</p>
+        <div class="stack" aria-label="Technology used"><span>React</span><span>TypeScript</span><span>Firestore</span></div>
+        <details class="more"><summary>What it does <span aria-hidden="true">+</span></summary><ul><li>Ingredient and packaging inventory</li><li>Recipe scaling and production batches</li><li>Purchase records, backups and stock history</li></ul></details>
+        <div class="project-actions">
+          <a class="action primary" href="https://downaironly.github.io/botanica/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a>
+          <a class="action" href="https://github.com/DownAirOnly/botanica" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
+          <button class="action preview-button" type="button" data-preview="botanica" aria-label="Enlarge screenshot of Botanica">Screenshot <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="project-note">The public site opens to sign-in.</p>
+      </div>
+    </article>
+    <article class="project" id="playlists" aria-labelledby="playlists-title">
+      <div class="project-head"><span class="project-index">03 / Website</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+      <a class="screenshot" href="https://downaironly.github.io/usf-playlist-catalog/" target="_blank" rel="noopener noreferrer" aria-label="Open USF Playlist Catalog website">
+        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>Open USF Playlist Catalog</span></span>
+        <img src="https://image.thum.io/get/width/1000/crop/900/maxAge/24/https://downaironly.github.io/usf-playlist-catalog/" alt="Capture of the public USF Playlist Catalog website" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
+        <span class="screenshot-label">OPEN LIVE WEBSITE <span aria-hidden="true">↗</span></span>
+      </a>
+      <div class="project-main">
+        <div class="project-title-row"><h3 id="playlists-title"><a href="https://downaironly.github.io/usf-playlist-catalog/" target="_blank" rel="noopener noreferrer">USF Playlist Catalog <span aria-hidden="true">↗</span></a></h3><span class="kind">Website</span></div>
+        <p class="project-description">An unofficial catalog of the music played across Universal Studios Florida, organized by area and playlist.</p>
+        <div class="stack" aria-label="Technology used"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        <details class="more"><summary>What it does <span aria-hidden="true">+</span></summary><ul><li>Park areas and individual music loops</li><li>Organized track lists</li><li>An ongoing personal archive</li></ul></details>
+        <div class="project-actions">
+          <a class="action primary" href="https://downaironly.github.io/usf-playlist-catalog/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a>
+          <a class="action" href="https://github.com/DownAirOnly/usf-playlist-catalog" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
+          <button class="action preview-button" type="button" data-preview="playlists" aria-label="Enlarge screenshot of USF Playlist Catalog">Screenshot <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="project-note">Unofficial fan project; not affiliated with Universal.</p>
+      </div>
+    </article></div>
+        <p class="capture-note"><span aria-hidden="true">ⓘ</span> Screenshots are generated from each public website. Apps with private accounts may show a sign-in screen. No personal data is included.</p>
+      </section>
+      <section class="about-section" id="about" aria-labelledby="about-heading">
+        <div class="about-head"><span class="overline">ABOUT</span><h2 id="about-heading">A little about me<span class="dot">.</span></h2></div>
+        <div class="about-copy"><p>I'm based in Orlando and work in theme park operations, where I spend a lot of time dealing with schedules, people and day-to-day systems.</p><p>I started building things I wanted to use myself. Everyday is my personal tracker. Botanica is for my family's small business. The playlist catalog began as a way to document music I hear at work.</p><p>I'm continuing to learn web development and looking for opportunities to work in technology.</p>
+          <a class="about-link" href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">See what I'm working on at GitHub <span aria-hidden="true">↗</span></a>
         </div>
       </section>
-
-      <section class="micro-strip" aria-label="Areas of focus"><span>WEB APPLICATIONS</span><span class="micro-star">✳</span><span>PRODUCT THINKING</span><span class="micro-star">✳</span><span>RESPONSIVE INTERFACES</span><span class="micro-star">✳</span><span>DATA &amp; WORKFLOWS</span></section>
-
-      <section class="work-section section-space" id="work" aria-labelledby="work-title">
-        <div class="section-head"><div><div class="section-index">01 / SELECTED WORK</div><h2 id="work-title">Things I've <em>built.</em></h2><p>Real projects, real problems, and the thinking behind them.</p></div><div class="project-count">03 / PROJECTS</div></div>
-        <div class="filters" role="group" aria-label="Filter projects">
-          <button class="filter active" type="button" data-filter="all" aria-pressed="true">All projects <span>03</span></button>
-          <button class="filter" type="button" data-filter="app" aria-pressed="false">Applications <span>02</span></button>
-          <button class="filter" type="button" data-filter="web" aria-pressed="false">Web projects <span>01</span></button>
-        </div>
-        <div class="projects">
-          <article class="project-card project-featured" data-category="app">
-            <div class="project-visual visual-everyday" aria-label="Illustrative graphic inspired by personal fitness, lifting and budget dashboards">
-              <div class="visual-meta">01 <span>PERSONAL SYSTEMS</span></div>
-              <div class="everyday-preview" aria-hidden="true">
-                <div class="preview-top"><div class="tiny-logo">▲</div><span>everyday</span><span class="preview-ellipsis">•••</span></div>
-                <div class="preview-heading">Your day, at a glance.</div>
-                <div class="preview-two-cols"><div class="preview-stat"><small>NUTRITION</small><strong>Fuel</strong><div class="preview-track"><span style="width:66%"></span></div><small>DAILY PROGRESS</small></div><div class="preview-stat"><small>STRENGTH</small><strong>Train</strong><div class="preview-track coral"><span style="width:77%"></span></div><small>ROUTINES &amp; SETS</small></div></div>
-                <div class="preview-budget"><span>THIS PAYCHECK</span><span class="preview-bars"><i></i><i></i><i></i></span></div>
-              </div>
-              <div class="visual-caption">CONCEPTUAL PROJECT VISUAL — NOT AN APP SCREENSHOT</div>
-            </div>
-            <div class="project-info"><div class="project-topline"><span class="project-label">FEATURED PROJECT</span><span class="project-number">01 / 03</span></div><h3>Everyday<span class="period">.</span></h3><p class="project-type">PERSONAL PRODUCTIVITY / FITNESS / FINANCE</p><p class="project-description">A personal operating system for nutrition, strength training, body measurements, and paycheck-based budgeting—all in one installable web app.</p><div class="tags"><span>JavaScript</span><span>HTML / CSS</span><span>Firebase</span><span>PWA</span></div><details class="project-details"><summary>Behind the build <span aria-hidden="true">+</span></summary><div class="details-body"><p>Everyday started with a concrete problem: tracking different parts of daily life across disconnected tools. The project now brings them into a single mobile-first workflow.</p><ul><li>Workout routines, set logging and a guided workout experience</li><li>Food logging, nutrition totals and measurement history</li><li>Paycheck-first budgeting, imports and account synchronization</li><li>Ongoing iteration focused on reliability, accessibility and iPhone usability</li></ul><p><strong>My focus:</strong> practical interfaces, explicit data handling, and continuous improvement based on actual use.</p></div></details><div class="project-links"><a href="https://downaironly.github.io/fitness-tracker/" target="_blank" rel="noopener noreferrer">Open app <span aria-hidden="true">↗</span></a><a href="https://github.com/DownAirOnly/fitness-tracker" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a></div></div>
-          </article>
-          <article class="project-card" data-category="app">
-            <div class="project-visual visual-botanica" aria-label="Illustrative inventory workflow concept">
-              <div class="visual-meta">02 <span>INVENTORY &amp; PRODUCTION</span></div>
-              <div class="botanica-preview" aria-hidden="true"><div class="botanica-leaf"><svg viewBox="0 0 120 132" fill="none"><path d="M63 122C27 106 13 80 21 53 29 26 73 16 105 9c-2 36-4 81-42 113Z" stroke="currentColor" stroke-width="2"/><path d="M27 97c28-31 53-52 78-88M60 65l-22-5m35-10 3-24M47 83 24 77" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="botanica-panel"><div class="botanica-panel-head">BOTANICA <span>✳</span></div><p>Good systems grow<br>with your business.</p><div class="botanica-mini"><span>INVENTORY</span><b>→</b></div><div class="botanica-mini"><span>FORMULAS</span><b>→</b></div><div class="botanica-mini"><span>PRODUCTION</span><b>→</b></div></div></div>
-              <div class="visual-caption">CONCEPTUAL PROJECT VISUAL — NOT AN APP SCREENSHOT</div>
-            </div><div class="project-info"><div class="project-topline"><span class="project-label">SMALL BUSINESS TOOL</span><span class="project-number">02 / 03</span></div><h3>Botanica<span class="period">.</span></h3><p class="project-type">INVENTORY / OPERATIONS / DATA MODELING</p><p class="project-description">An inventory and small-batch production app designed around real workflows: ingredients, suppliers, packaging, recipes, and stock movements.</p><div class="tags"><span>React</span><span>TypeScript</span><span>Vite</span><span>Firestore</span></div><details class="project-details"><summary>Behind the build <span aria-hidden="true">+</span></summary><div class="details-body"><p>Built to replace fragmented spreadsheets and manual calculations with connected, understandable records.</p><ul><li>Private workspaces with Google authentication</li><li>Stock adjustments, supplier histories and reorder workflows</li><li>Recipe scaling, recorded production and packaging usage</li><li>Import review, backup tools and audit-friendly changes</li></ul><p><strong>Current stage:</strong> active development and real-world workflow validation.</p></div></details><div class="project-links"><a href="https://github.com/DownAirOnly/botanica" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a></div></div>
-          </article>
-          <article class="project-card" data-category="web">
-            <div class="project-visual visual-playlists" aria-label="Illustrative music catalog with location categories">
-              <div class="visual-meta">03 <span>CONTENT &amp; DISCOVERY</span></div>
-              <div class="playlist-preview" aria-hidden="true"><div class="record record-back"></div><div class="record record-front"><div class="record-inner">USF</div></div><div class="playlist-paper"><div class="paper-overline">UNOFFICIAL ARCHIVE</div><div class="paper-title">The sounds<br>of the park.</div><div class="paper-rule"></div><div class="paper-row">NEW YORK <span>01</span></div><div class="paper-row">HOLLYWOOD <span>02</span></div><div class="paper-row">SAN FRANCISCO <span>03</span></div></div></div>
-              <div class="visual-caption">CONCEPTUAL PROJECT VISUAL — NOT AN APP SCREENSHOT</div>
-            </div><div class="project-info"><div class="project-topline"><span class="project-label">PASSION PROJECT</span><span class="project-number">03 / 03</span></div><h3>USF Playlist Catalog<span class="period">.</span></h3><p class="project-type">WEB CONTENT / INFORMATION ARCHITECTURE</p><p class="project-description">An unofficial catalog organizing the background music played across Universal Studios Florida by park area and playlist.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Content structure</span></div><details class="project-details"><summary>Behind the build <span aria-hidden="true">+</span></summary><div class="details-body"><p>A personal interest turned into a structured, browsable reference for a surprisingly complicated set of music loops.</p><ul><li>Semantic organization by themed area and playlist</li><li>Clear distinction between confirmed, partial and planned content</li><li>A lightweight foundation built to support future search and filters</li></ul><p><strong>Note:</strong> independently created fan project, not affiliated with or endorsed by Universal.</p></div></details><div class="project-links"><a href="https://github.com/DownAirOnly/usf-playlist-catalog" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a></div></div>
-          </article>
-        </div>
+      <section class="closing" aria-labelledby="closing-title">
+        <div><span class="overline">MORE ON GITHUB</span><h2 id="closing-title">See the source<span class="dot">.</span></h2><p>All three projects have public repositories with their code and documentation.</p></div>
+        <a class="btn btn-accent" href="https://github.com/DownAirOnly?tab=repositories" target="_blank" rel="noopener noreferrer">Browse repositories <span aria-hidden="true">↗</span></a>
       </section>
-
-      <section class="approach-section section-space" id="approach" aria-labelledby="approach-title"><div class="section-index">02 / THE APPROACH</div><div class="approach-grid"><div><h2 id="approach-title">Less noise.<br><em>Better tools.</em></h2><p>I like software that saves effort rather than creates more work. Each project is a chance to practice that principle in a different setting.</p></div><div class="principles"><div class="principle"><span>01</span><div><h3>Start with a real problem.</h3><p>Understand the task, the person doing it, and what makes the current process frustrating.</p></div></div><div class="principle"><span>02</span><div><h3>Make the common path simple.</h3><p>Prioritize clear navigation, useful defaults, and mobile-friendly interactions.</p></div></div><div class="principle"><span>03</span><div><h3>Protect the details.</h3><p>Think carefully about data structures, storage, imports, and what happens when something goes wrong.</p></div></div></div></div></section>
-
-      <section class="about-section section-space" id="about" aria-labelledby="about-title"><div class="section-index">03 / ABOUT</div><div class="about-grid"><h2 id="about-title">A builder's mindset.<br><em>An operator's eye.</em></h2><div class="about-copy"><p>I'm Nick, a software builder based in Orlando, Florida. My professional background is in high-volume theme park operations and team leadership, where small improvements to systems and processes can have an immediate impact.</p><p>That experience shapes how I approach technology. I pay attention to real users, repetitive tasks, usability issues, and the edge cases that only show up once a tool is used every day.</p><p>I'm continuing to develop my technical skills while building practical projects that people can actually use.</p><a href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer" class="text-link">See my GitHub profile <span aria-hidden="true">↗</span></a></div></div></section>
-
-      <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="contact-top"><span>04 / GET IN TOUCH</span><span>OPEN TO CONVERSATIONS ABOUT TECH &amp; SOFTWARE</span></div><h2 id="contact-title">Have something<br><em>worth building?</em></h2><p>I'm interested in opportunities to learn, contribute, and solve meaningful technical problems.</p><div class="contact-actions"><a class="button button-contact" href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">Find me on GitHub <span aria-hidden="true">↗</span></a><button type="button" id="share-button" class="button button-outline">Share this portfolio <span aria-hidden="true">↗</span></button></div><p class="share-status" id="share-status" aria-live="polite"></p></section>
     </main>
-    <footer class="footer"><div><span class="footer-brand">n<span>.</span></span><span>Designed &amp; built with intention.</span></div><div><span>© <span id="year">2026</span> Nick</span><a href="#top">Back to top ↑</a></div></footer>
+    <footer class="footer"><a class="footer-logo" href="#top" aria-label="Back to top">n<span>.</span></a><span>Nick · Orlando, FL</span><div><a href="#projects">Projects</a><a href="#about">About</a><a href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></footer>
   </div>
+  <dialog id="screenshot-dialog" class="screenshot-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-bar"><h2 id="dialog-title">Website screenshot</h2><button id="dialog-close" type="button" aria-label="Close screenshot">✕</button></div>
+    <img id="dialog-image" alt="" width="1000" height="900" referrerpolicy="no-referrer">
+    <div class="dialog-foot"><p>Capture of the public website. Signed-in data is not shown.</p><a id="dialog-link" href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">Open live website ↗</a></div>
+  </dialog>
 </body>
 </html>

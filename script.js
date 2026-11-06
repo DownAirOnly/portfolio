@@ -1,35 +1,44 @@
 (() => {
   const root = document.documentElement;
   const toggle = document.getElementById('theme-toggle');
-  const applyTheme = (theme) => {
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  function setTheme(theme) {
     root.dataset.theme = theme;
-    toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme');
-    toggle.title = 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme';
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0a1115' : '#f5f6f1');
-  };
-  let theme = 'dark';
-  try { theme = localStorage.getItem('nick-portfolio-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch {}
-  applyTheme(theme === 'light' ? 'light' : 'dark');
+    toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    if (themeMeta) themeMeta.content = theme === 'dark' ? '#111715' : '#f5f6f1';
+  }
+  let saved = 'dark';
+  try { saved = localStorage.getItem('nick-portfolio-theme') || 'dark'; } catch {}
+  setTheme(saved === 'light' ? 'light' : 'dark');
   toggle.addEventListener('click', () => {
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    applyTheme(next);
+    setTheme(next);
     try { localStorage.setItem('nick-portfolio-theme', next); } catch {}
   });
-  const filters = [...document.querySelectorAll('.filter')];
-  filters.forEach(button => button.addEventListener('click', () => {
-    filters.forEach(other => { const selected = other === button; other.classList.toggle('active', selected); other.setAttribute('aria-pressed', selected ? 'true' : 'false'); });
-    const filter = button.dataset.filter;
-    document.querySelectorAll('.project-card').forEach(card => { card.hidden = filter !== 'all' && card.dataset.category !== filter; });
-  }));
-  document.getElementById('year').textContent = String(new Date().getFullYear());
-  const share = document.getElementById('share-button');
-  const status = document.getElementById('share-status');
-  share.addEventListener('click', async () => {
-    const url = window.location.href.split('#')[0];
-    try {
-      if (navigator.share) { await navigator.share({ title: document.title, url }); status.textContent = ''; }
-      else if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(url); status.textContent = 'Portfolio link copied.'; }
-      else { status.textContent = 'Copy this address: ' + url; }
-    } catch(error) { if (error.name !== 'AbortError') status.textContent = 'Copy this address: ' + url; }
+  const screenshots = {
+    everyday: { name: 'Everyday', url: 'https://downaironly.github.io/fitness-tracker/' },
+    botanica: { name: 'Botanica', url: 'https://downaironly.github.io/botanica/' },
+    playlists: { name: 'USF Playlist Catalog', url: 'https://downaironly.github.io/usf-playlist-catalog/' }
+  };
+  const dialog = document.getElementById('screenshot-dialog');
+  const img = document.getElementById('dialog-image');
+  const link = document.getElementById('dialog-link');
+  const heading = document.getElementById('dialog-title');
+  document.querySelectorAll('[data-preview]').forEach(button => {
+    button.addEventListener('click', () => {
+      const info = screenshots[button.dataset.preview];
+      if (!info) return;
+      heading.textContent = info.name + ' — public screenshot';
+      img.alt = 'Capture of the public ' + info.name + ' website';
+      img.src = 'https://image.thum.io/get/width/1000/crop/900/maxAge/24/' + info.url;
+      link.href = info.url;
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else window.open(info.url, '_blank', 'noopener');
+    });
+  });
+  document.getElementById('dialog-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  document.querySelectorAll('.screenshot img').forEach(img => {
+    img.addEventListener('error', () => { img.hidden = true; });
   });
 })();
