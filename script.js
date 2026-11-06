@@ -17,7 +17,9 @@
   });
   const screenshots = {
     everyday: { name: 'Everyday', url: 'https://downaironly.github.io/fitness-tracker/', image: './assets/screenshots/everyday-home.png' },
+    'everyday-lifting': { name: 'Everyday — Lifting', url: 'https://downaironly.github.io/fitness-tracker/', image: './assets/screenshots/everyday-lifting.png' },
     botanica: { name: 'Botanica', url: 'https://downaironly.github.io/botanica/', image: './assets/screenshots/botanica-today.png' },
+    'botanica-inventory': { name: 'Botanica — Inventory', url: 'https://downaironly.github.io/botanica/', image: './assets/screenshots/botanica-inventory.png' },
     playlists: { name: 'USF Playlist Catalog', url: 'https://downaironly.github.io/usf-playlist-catalog/' }
   };
   const dialog = document.getElementById('screenshot-dialog');
