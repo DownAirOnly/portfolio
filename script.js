@@ -16,8 +16,8 @@
     try { localStorage.setItem('nick-portfolio-theme', next); } catch {}
   });
   const screenshots = {
-    everyday: { name: 'Everyday', url: 'https://downaironly.github.io/fitness-tracker/' },
-    botanica: { name: 'Botanica', url: 'https://downaironly.github.io/botanica/' },
+    everyday: { name: 'Everyday', url: 'https://downaironly.github.io/fitness-tracker/', image: './assets/screenshots/everyday-home.png' },
+    botanica: { name: 'Botanica', url: 'https://downaironly.github.io/botanica/', image: './assets/screenshots/botanica-today.png' },
     playlists: { name: 'USF Playlist Catalog', url: 'https://downaironly.github.io/usf-playlist-catalog/' }
   };
   const dialog = document.getElementById('screenshot-dialog');
@@ -30,7 +30,7 @@
       if (!info) return;
       heading.textContent = info.name + ' — public screenshot';
       img.alt = 'Capture of the public ' + info.name + ' website';
-      img.src = 'https://image.thum.io/get/width/1000/crop/900/maxAge/24/' + info.url;
+      img.src = info.image || 'https://image.thum.io/get/width/1000/crop/900/maxAge/24/' + info.url;
       link.href = info.url;
       if (typeof dialog.showModal === 'function') dialog.showModal();
       else window.open(info.url, '_blank', 'noopener');

@@ -11,7 +11,7 @@ A small portfolio with links to three public projects: Everyday, Botanica and th
 
 ## Project imagery
 
-Thumbnails come from a public website screenshot service (Thum.io). They are captures of public pages, **not invented app UI**. Logged-out/private apps can show sign-in rather than a logged-in dashboard. The service can cache captures and display loading images on first request. The website also provides direct links that do not rely on this service.
+Everyday and Botanica screenshots are rendered from the **actual public application source** in GitHub Actions, using their own fictional sample-data fixtures. No user accounts, cloud sign-in, or private data are used. A temporary build-time account harness is applied to Botanica without modifying its real repository. The USF Playlist Catalog thumbnail still uses a public website capture service.
 
 No private account data, stock records or credentials are embedded in this portfolio.
 
