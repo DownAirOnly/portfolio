@@ -15,7 +15,7 @@
   <script src="./script.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to projects</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="shell" id="top">
     <header class="header">
       <a class="brand" href="#top" aria-label="Back to top">n<span>.</span></a>
@@ -51,11 +51,11 @@
         <div class="project-grid">
     <article class="project" id="everyday" aria-labelledby="everyday-title">
       <div class="project-head"><span class="project-index">01 / Personal app</span><span class="project-arrow" aria-hidden="true">↗</span></div>
-      <a class="screenshot" href="https://downaironly.github.io/fitness-tracker/" target="_blank" rel="noopener noreferrer" aria-label="Open Everyday website">
-        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>Open Everyday</span></span>
+      <button class="screenshot screenshot-trigger" type="button" data-preview="everyday" aria-label="View Everyday screenshot gallery" aria-haspopup="dialog" aria-controls="screenshot-dialog">
+        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>View Everyday screenshot</span></span>
         <img src="./assets/screenshots/everyday-home.png" alt="Real Everyday Home screen with fictional demo data" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
-        <span class="screenshot-label">OPEN LIVE WEBSITE <span aria-hidden="true">↗</span></span>
-      </a>
+        <span class="screenshot-label">VIEW GALLERY <span aria-hidden="true">+</span></span>
+      </button>
       <div class="project-main">
         <div class="project-title-row"><h3 id="everyday-title"><a href="https://downaironly.github.io/fitness-tracker/" target="_blank" rel="noopener noreferrer">Everyday <span aria-hidden="true">↗</span></a></h3><span class="kind">Personal app</span></div>
         <p class="project-description">An app I use to keep food logs, workouts, body measurements and paycheck budgeting in one place.</p>
@@ -64,19 +64,19 @@
         <div class="project-actions">
           <a class="action primary" href="https://downaironly.github.io/fitness-tracker/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a>
           <a class="action" href="https://github.com/DownAirOnly/fitness-tracker" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
-          <button class="action preview-button" type="button" data-preview="everyday" aria-label="Enlarge Everyday Home screenshot">Home screen <span aria-hidden="true">↗</span></button>
-          <button class="action preview-button" type="button" data-preview="everyday-lifting" aria-label="Enlarge Everyday Lifting screenshot">Lifting screen <span aria-hidden="true">↗</span></button>
+          <button class="action preview-button" type="button" data-preview="everyday" aria-haspopup="dialog" aria-controls="screenshot-dialog">View gallery <span aria-hidden="true">+</span></button>
+          
         </div>
         <p class="project-note">Private data is behind sign-in.</p>
       </div>
     </article>
     <article class="project" id="botanica" aria-labelledby="botanica-title">
       <div class="project-head"><span class="project-index">02 / Inventory app</span><span class="project-arrow" aria-hidden="true">↗</span></div>
-      <a class="screenshot" href="https://downaironly.github.io/botanica/" target="_blank" rel="noopener noreferrer" aria-label="Open Botanica website">
-        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>Open Botanica</span></span>
+      <button class="screenshot screenshot-trigger" type="button" data-preview="botanica" aria-label="View Botanica screenshot gallery" aria-haspopup="dialog" aria-controls="screenshot-dialog">
+        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>View Botanica screenshot</span></span>
         <img src="./assets/screenshots/botanica-today.png" alt="Real Botanica Today screen with fictional demo inventory" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
-        <span class="screenshot-label">OPEN LIVE WEBSITE <span aria-hidden="true">↗</span></span>
-      </a>
+        <span class="screenshot-label">VIEW GALLERY <span aria-hidden="true">+</span></span>
+      </button>
       <div class="project-main">
         <div class="project-title-row"><h3 id="botanica-title"><a href="https://downaironly.github.io/botanica/" target="_blank" rel="noopener noreferrer">Botanica <span aria-hidden="true">↗</span></a></h3><span class="kind">Inventory app</span></div>
         <p class="project-description">An inventory and production app for my family's herbal business. It tracks ingredients, recipes, suppliers and finished products.</p>
@@ -85,8 +85,8 @@
         <div class="project-actions">
           <a class="action primary" href="https://downaironly.github.io/botanica/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a>
           <a class="action" href="https://github.com/DownAirOnly/botanica" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
-          <button class="action preview-button" type="button" data-preview="botanica" aria-label="Enlarge Botanica Today screenshot">Today screen <span aria-hidden="true">↗</span></button>
-          <button class="action preview-button" type="button" data-preview="botanica-inventory" aria-label="Enlarge Botanica Inventory screenshot">Inventory screen <span aria-hidden="true">↗</span></button>
+          <button class="action preview-button" type="button" data-preview="botanica" aria-haspopup="dialog" aria-controls="screenshot-dialog">View gallery <span aria-hidden="true">+</span></button>
+          
         </div>
         <p class="project-note">The public site opens to sign-in.</p>
       </div>
@@ -94,11 +94,11 @@
 
     <article class="project" id="edc" aria-labelledby="edc-title">
       <div class="project-head"><span class="project-index">03 / Festival planner</span><span class="project-arrow" aria-hidden="true">↗</span></div>
-      <a class="screenshot" href="https://downaironly.github.io/edc-planner/" target="_blank" rel="noopener noreferrer" aria-label="Open EDC Pocket website">
-        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>Open EDC Pocket</span></span>
+      <button class="screenshot screenshot-trigger" type="button" data-preview="edc" aria-label="View EDC Pocket screenshot gallery" aria-haspopup="dialog" aria-controls="screenshot-dialog">
+        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>View EDC Pocket screenshot</span></span>
         <img src="./assets/screenshots/edc-lineup.png" alt="EDC Pocket lineup displayed in the actual app with example saved sets" loading="lazy" decoding="async" width="1000" height="900">
-        <span class="screenshot-label">OPEN LIVE WEBSITE <span aria-hidden="true">↗</span></span>
-      </a>
+        <span class="screenshot-label">VIEW GALLERY <span aria-hidden="true">+</span></span>
+      </button>
       <div class="project-main">
         <div class="project-title-row"><h3 id="edc-title"><a href="https://downaironly.github.io/edc-planner/" target="_blank" rel="noopener noreferrer">EDC Pocket <span aria-hidden="true">↗</span></a></h3><span class="kind">Festival planner</span></div>
         <p class="project-description">A pocket planner for EDC Orlando, with set times, saved artists, schedule conflicts, and a festival map.</p>
@@ -107,19 +107,19 @@
         <div class="project-actions">
           <a class="action primary" href="https://downaironly.github.io/edc-planner/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a>
           <a class="action" href="https://github.com/DownAirOnly/edc-planner" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
-          <button class="action preview-button" type="button" data-preview="edc" aria-label="Enlarge EDC Pocket lineup screenshot">Lineup screen <span aria-hidden="true">↗</span></button>
-          <button class="action preview-button" type="button" data-preview="edc-plan" aria-label="Enlarge EDC Pocket plan screenshot">My plan <span aria-hidden="true">↗</span></button>
+          <button class="action preview-button" type="button" data-preview="edc" aria-haspopup="dialog" aria-controls="screenshot-dialog">View gallery <span aria-hidden="true">+</span></button>
+          
         </div>
         <p class="project-note">Independent fan project; not affiliated with EDC or Insomniac.</p>
       </div>
     </article>
     <article class="project" id="command" aria-labelledby="command-title">
       <div class="project-head"><span class="project-index">04 / Project dashboard</span><span class="project-arrow" aria-hidden="true">↗</span></div>
-      <a class="screenshot" href="https://downaironly.github.io/planner/" target="_blank" rel="noopener noreferrer" aria-label="Open Command website">
-        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>Open Command</span></span>
+      <button class="screenshot screenshot-trigger" type="button" data-preview="command" aria-label="View Command screenshot gallery" aria-haspopup="dialog" aria-controls="screenshot-dialog">
+        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>View Command screenshot</span></span>
         <img src="./assets/screenshots/command-home.png" alt="Command dashboard running with fictional projects and tasks" loading="lazy" decoding="async" width="1000" height="900">
-        <span class="screenshot-label">OPEN LIVE WEBSITE <span aria-hidden="true">↗</span></span>
-      </a>
+        <span class="screenshot-label">VIEW GALLERY <span aria-hidden="true">+</span></span>
+      </button>
       <div class="project-main">
         <div class="project-title-row"><h3 id="command-title"><a href="https://downaironly.github.io/planner/" target="_blank" rel="noopener noreferrer">Command <span aria-hidden="true">↗</span></a></h3><span class="kind">Project dashboard</span></div>
         <p class="project-description">A simple place to track unfinished projects, priorities, tasks, and ideas without juggling several lists.</p>
@@ -128,19 +128,19 @@
         <div class="project-actions">
           <a class="action primary" href="https://downaironly.github.io/planner/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a>
           <a class="action" href="https://github.com/DownAirOnly/planner" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
-          <button class="action preview-button" type="button" data-preview="command" aria-label="Enlarge Command dashboard screenshot">Dashboard <span aria-hidden="true">↗</span></button>
-          <button class="action preview-button" type="button" data-preview="command-projects" aria-label="Enlarge Command projects screenshot">Projects <span aria-hidden="true">↗</span></button>
+          <button class="action preview-button" type="button" data-preview="command" aria-haspopup="dialog" aria-controls="screenshot-dialog">View gallery <span aria-hidden="true">+</span></button>
+          
         </div>
         <p class="project-note">Local-first: data stays in your browser unless you export a backup.</p>
       </div>
     </article>
     <article class="project" id="playlists" aria-labelledby="playlists-title">
       <div class="project-head"><span class="project-index">05 / Website</span><span class="project-arrow" aria-hidden="true">↗</span></div>
-      <a class="screenshot" href="https://downaironly.github.io/usf-playlist-catalog/" target="_blank" rel="noopener noreferrer" aria-label="Open USF Playlist Catalog website">
-        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>Open USF Playlist Catalog</span></span>
+      <button class="screenshot screenshot-trigger" type="button" data-preview="playlists" aria-label="View USF Playlist Catalog screenshot" aria-haspopup="dialog" aria-controls="screenshot-dialog">
+        <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>View USF Playlist Catalog screenshot</span></span>
         <img src="https://image.thum.io/get/width/1000/crop/900/maxAge/24/https://downaironly.github.io/usf-playlist-catalog/" alt="Capture of the public USF Playlist Catalog website" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
-        <span class="screenshot-label">OPEN LIVE WEBSITE <span aria-hidden="true">↗</span></span>
-      </a>
+        <span class="screenshot-label">VIEW SCREENSHOT <span aria-hidden="true">+</span></span>
+      </button>
       <div class="project-main">
         <div class="project-title-row"><h3 id="playlists-title"><a href="https://downaironly.github.io/usf-playlist-catalog/" target="_blank" rel="noopener noreferrer">USF Playlist Catalog <span aria-hidden="true">↗</span></a></h3><span class="kind">Website</span></div>
         <p class="project-description">An unofficial catalog of the music played across Universal Studios Florida, organized by area and playlist.</p>
@@ -149,7 +149,7 @@
         <div class="project-actions">
           <a class="action primary" href="https://downaironly.github.io/usf-playlist-catalog/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a>
           <a class="action" href="https://github.com/DownAirOnly/usf-playlist-catalog" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
-          <button class="action preview-button" type="button" data-preview="playlists" aria-label="Enlarge screenshot of USF Playlist Catalog">Screenshot <span aria-hidden="true">↗</span></button>
+          <button class="action preview-button" type="button" data-preview="playlists" aria-haspopup="dialog" aria-controls="screenshot-dialog">View screenshot <span aria-hidden="true">+</span></button>
         </div>
         <p class="project-note">Unofficial fan project; not affiliated with Universal.</p>
       </div>
@@ -170,9 +170,16 @@
     <footer class="footer"><a class="footer-logo" href="#top" aria-label="Back to top">n<span>.</span></a><span>Nick · Orlando, FL</span><div><a href="#projects">Projects</a><a href="#about">About</a><a href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></footer>
   </div>
   <dialog id="screenshot-dialog" class="screenshot-dialog" aria-labelledby="dialog-title">
-    <div class="dialog-bar"><h2 id="dialog-title">Website screenshot</h2><button id="dialog-close" type="button" aria-label="Close screenshot">✕</button></div>
-    <img id="dialog-image" alt="" width="1000" height="900" referrerpolicy="no-referrer">
-    <div class="dialog-foot"><p>Screenshots show the real interface with fictional sample data, or a public website view.</p><a id="dialog-link" href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">Open live website ↗</a></div>
+    <div class="dialog-bar"><h2 id="dialog-title">Project screenshots</h2><button id="dialog-close" type="button" aria-label="Close screenshot gallery">✕</button></div>
+    <div class="gallery-stage" id="gallery-stage">
+      <img id="dialog-image" alt="" width="830" height="1800" referrerpolicy="no-referrer">
+    </div>
+    <div class="gallery-nav" id="gallery-nav" aria-label="Screenshot navigation" hidden>
+      <button id="gallery-prev" type="button" aria-label="Previous screenshot"><span aria-hidden="true">←</span> Previous</button>
+      <span id="gallery-count" role="status" aria-live="polite"></span>
+      <button id="gallery-next" type="button" aria-label="Next screenshot">Next <span aria-hidden="true">→</span></button>
+    </div>
+    <div class="dialog-foot"><p>Actual interfaces captured with fictional sample data. Swipe or use the arrows to browse.</p><a id="dialog-link" href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">Open live website ↗</a></div>
   </dialog>
 </body>
 </html>
