@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111715">
+  <meta name="theme-color" content="#090C14">
   <meta name="description" content="Nick's portfolio of five web projects: Everyday, Botanica, EDC Pocket, Command, and the USF Playlist Catalog.">
   <meta property="og:title" content="Nick | Projects">
   <meta property="og:description" content="Five projects: personal software, inventory, festival planning, project tracking, and a music archive.">
@@ -24,7 +24,7 @@
         <a href="#about">About</a>
         <a href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
       </nav>
-      <button class="theme-toggle" id="theme-toggle" type="button" title="Switch color theme" aria-label="Switch to light mode"><span class="theme-icon" aria-hidden="true">◐</span></button>
+      <button class="theme-toggle" id="theme-toggle" type="button" title="Choose portfolio colors" aria-label="Open appearance settings" aria-haspopup="dialog" aria-controls="appearance-dialog"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="8" cy="9" r="1" fill="currentColor" stroke="none"></circle><circle cx="15.5" cy="8" r="1" fill="currentColor" stroke="none"></circle><circle cx="16" cy="14" r="1" fill="currentColor" stroke="none"></circle><path d="M10 17c-1.5-1-1.4-2.7.4-3.1 1.8-.5 2.8.4 2.8 1.8 0 1.4-1.6 2.2-3.2 1.2Z"></path></svg></button>
     </header>
     <main id="main">
       <section class="hero" aria-labelledby="hero-heading">
@@ -169,6 +169,38 @@
     </main>
     <footer class="footer"><a class="footer-logo" href="#top" aria-label="Back to top">n<span>.</span></a><span>Nick · Orlando, FL</span><div><a href="#projects">Projects</a><a href="#about">About</a><a href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></footer>
   </div>
+  <dialog id="appearance-dialog" class="appearance-dialog" aria-labelledby="appearance-title">
+    <div class="appearance-head"><div><span class="overline">MAKE IT YOURS</span><h2 id="appearance-title">Appearance<span class="dot">.</span></h2></div><button id="appearance-close" class="appearance-close" type="button" aria-label="Close appearance settings">✕</button></div>
+    <p class="appearance-intro">Choose a color scheme or build your own. Changes show instantly and stay on this device.</p>
+    <section class="appearance-section" aria-labelledby="preset-heading">
+      <h3 id="preset-heading">Color palettes</h3>
+      <div class="palette-grid" id="preset-palettes">
+        <button class="palette-option" type="button" data-palette="duality" aria-pressed="true"><span class="palette-preview" style="--sample-bg:#090C14;--sample-card:#151D30;--sample-primary:#155FE4;--sample-secondary:#FF4B61" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="palette-name">Duality</span></button>
+        <button class="palette-option" type="button" data-palette="sonic" aria-pressed="false"><span class="palette-preview" style="--sample-bg:#081528;--sample-card:#142D50;--sample-primary:#2E8AFF;--sample-secondary:#78CBFF" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="palette-name">Blue Shift</span></button>
+        <button class="palette-option" type="button" data-palette="shadow" aria-pressed="false"><span class="palette-preview" style="--sample-bg:#100A11;--sample-card:#281820;--sample-primary:#E23449;--sample-secondary:#5895FF" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="palette-name">Redline</span></button>
+        <button class="palette-option" type="button" data-palette="forest" aria-pressed="false"><span class="palette-preview" style="--sample-bg:#111715;--sample-card:#1B2420;--sample-primary:#C0E39F;--sample-secondary:#70AF97" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="palette-name">Enchanted Forest</span></button>
+        <button class="palette-option" type="button" data-palette="arctic" aria-pressed="false"><span class="palette-preview" style="--sample-bg:#F4F6FB;--sample-card:#FFFFFF;--sample-primary:#175EDB;--sample-secondary:#D3314C" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="palette-name">Whiteout</span></button>
+      </div>
+    </section>
+    <section class="appearance-section" aria-labelledby="custom-heading">
+      <div class="appearance-section-title"><h3 id="custom-heading">Custom palette</h3><span class="appearance-hint">Live preview</span></div>
+      <div class="color-fields">
+        <label class="color-field"><span>Background</span><input type="color" id="color-background" value="#090c14"></label>
+        <label class="color-field"><span>Cards</span><input type="color" id="color-surface" value="#151d30"></label>
+        <label class="color-field"><span>Primary</span><input type="color" id="color-primary" value="#155fe4"></label>
+        <label class="color-field"><span>Secondary</span><input type="color" id="color-secondary" value="#ff4b61"></label>
+      </div>
+      <label class="custom-name-label" for="palette-custom-name">Palette name</label>
+      <div class="save-palette-row">
+        <input id="palette-custom-name" maxlength="32" type="text" placeholder="My palette" autocomplete="off">
+        <button type="button" id="palette-save" class="btn btn-accent">Save palette</button>
+      </div>
+      <p class="appearance-hint">Adjusting colors creates a custom preview. Save to keep several named palettes.</p>
+      <div class="appearance-section-title saved-heading"><h3>My palettes</h3><span id="palette-count" class="appearance-hint"></span></div>
+      <div id="saved-palettes" class="saved-palette-list"><p class="appearance-empty">No saved palettes yet.</p></div>
+      <p id="palette-message" class="palette-message" role="status" aria-live="polite"></p>
+    </section>
+  </dialog>
   <dialog id="screenshot-dialog" class="screenshot-dialog" aria-labelledby="dialog-title">
     <div class="dialog-bar"><h2 id="dialog-title">Project screenshots</h2><button id="dialog-close" type="button" aria-label="Close screenshot gallery">✕</button></div>
     <div class="gallery-stage" id="gallery-stage">
