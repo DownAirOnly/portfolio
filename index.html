@@ -11,8 +11,25 @@
   <meta property="og:url" content="https://downaironly.github.io/portfolio/">
   <title>Nick | Projects</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./script.js" defer></script>
+  <meta name="portfolio-release" content="studio-20261107-1">
+  <script>
+    // A unique refresh query also busts the CSS/JS caches for installed iPhone web apps.
+    (() => {
+      const params = new URLSearchParams(location.search);
+      const requested = params.get('refresh');
+      const fallback = document.querySelector('meta[name="portfolio-release"]').content;
+      const version = requested && /^[a-zA-Z0-9_-]{1,80}$/.test(requested) ? requested : fallback;
+      const stylesheet = document.createElement('link');
+      stylesheet.rel = 'stylesheet';
+      stylesheet.href = './styles.css?v=' + encodeURIComponent(version);
+      document.head.appendChild(stylesheet);
+      document.addEventListener('DOMContentLoaded', () => {
+        const script = document.createElement('script');
+        script.src = './script.js?v=' + encodeURIComponent(version);
+        document.body.appendChild(script);
+      }, { once: true });
+    })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -172,6 +189,7 @@
   <dialog id="appearance-dialog" class="appearance-dialog" aria-labelledby="appearance-title">
     <div class="appearance-head"><div><span class="overline">MAKE IT YOURS</span><h2 id="appearance-title">Appearance<span class="dot">.</span></h2></div><button id="appearance-close" class="appearance-close" type="button" aria-label="Close appearance settings">Close</button></div>
     <p class="appearance-intro">Choose a color scheme or build your own. Changes show instantly and stay on this device.</p>
+    <button class="studio-launch" id="studio-open" type="button" aria-haspopup="dialog" aria-controls="studio-dialog"><span>Open Studio</span><small>Layout, typography, spacing and updates</small></button>
     <section class="appearance-section" aria-labelledby="preset-heading">
       <h3 id="preset-heading">Color palettes</h3>
       <div class="palette-grid" id="preset-palettes">
@@ -200,6 +218,48 @@
       <div id="saved-palettes" class="saved-palette-list"><p class="appearance-empty">No saved palettes yet.</p></div>
       <p id="palette-message" class="palette-message" role="status" aria-live="polite"></p>
     </section>
+  </dialog>
+  <dialog id="studio-dialog" class="studio-dialog" aria-labelledby="studio-title">
+    <div class="studio-top">
+      <div><span class="overline">LOCAL DESIGN TOOLS</span><h2 id="studio-title">Studio<span class="dot">.</span></h2></div>
+      <button class="studio-close" id="studio-close" type="button">Close</button>
+    </div>
+    <p class="studio-intro">Adjust your portfolio while viewing it live. These settings affect only this device until you export them and commit a site change.</p>
+    <div class="studio-section">
+      <div class="studio-heading"><h3>Layout</h3><span class="studio-caption">Preview immediately</span></div>
+      <label class="studio-control"><span>Desktop project layout</span>
+        <select id="studio-project-layout"><option value="featured">Featured first</option><option value="grid">Equal cards</option><option value="stack">Single column</option></select>
+      </label>
+      <label class="studio-control"><span>Headline typography</span>
+        <select id="studio-type"><option value="bold">Bold geometric</option><option value="neutral">Clean sans</option><option value="editorial">Editorial serif</option></select>
+      </label>
+      <label class="studio-control studio-slider"><span>Content width <output id="studio-width-value">1190 px</output></span>
+        <input type="range" id="studio-width" min="960" max="1440" step="20" value="1190">
+      </label>
+      <label class="studio-control studio-slider"><span>Section spacing <output id="studio-space-value">90 px</output></span>
+        <input type="range" id="studio-space" min="48" max="120" step="4" value="90">
+      </label>
+      <label class="studio-control studio-slider"><span>Card corners <output id="studio-radius-value">14 px</output></span>
+        <input type="range" id="studio-radius" min="0" max="28" step="2" value="14">
+      </label>
+      <label class="studio-check"><input type="checkbox" id="studio-compact"><span>Compact project cards</span></label>
+      <label class="studio-check"><input type="checkbox" id="studio-directory" checked><span>Show project directory on mobile</span></label>
+    </div>
+    <div class="studio-section">
+      <div class="studio-heading"><h3>Appearance and settings</h3></div>
+      <button class="studio-secondary" id="studio-colors" type="button">Edit color palettes</button>
+      <button class="studio-secondary" id="studio-copy" type="button">Copy design settings</button>
+      <button class="studio-secondary" id="studio-reset" type="button">Reset layout to default</button>
+      <label class="studio-control" for="studio-export-output">Settings export</label>
+      <textarea id="studio-export-output" class="studio-export-output" rows="5" readonly hidden aria-label="Copyable design settings"></textarea>
+      <p class="studio-caption">Customizations are saved in this browser. Exported settings can be used for a permanent GitHub change.</p>
+    </div>
+    <div class="studio-section">
+      <div class="studio-heading"><h3>Updates</h3><span class="studio-version" id="studio-version">studio-20261107-1</span></div>
+      <p class="studio-caption">The site checks for updates when reopened. Load latest bypasses cached HTML, CSS and JavaScript.</p>
+      <div class="studio-updates"><button class="btn btn-accent" id="studio-force-refresh" type="button">Load latest version</button><button class="studio-secondary" id="studio-check-update" type="button">Check for update</button></div>
+    </div>
+    <p id="studio-message" class="studio-message" role="status" aria-live="polite"></p>
   </dialog>
   <dialog id="screenshot-dialog" class="screenshot-dialog" aria-labelledby="dialog-title">
     <div class="dialog-bar"><h2 id="dialog-title">Project screenshots</h2><button id="dialog-close" type="button" aria-label="Close screenshot gallery">Close</button></div>
