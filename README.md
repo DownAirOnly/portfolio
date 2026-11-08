@@ -4,9 +4,9 @@ Live on GitHub Pages: https://downaironly.github.io/portfolio/
 
 A projects-first portfolio featuring Everyday, Command, Botanica, EDC Pocket, and the USF Playlist Catalog. Each project links to its live site and source repository.
 
-- `index.html`: content, project links and screenshot dialog
+- `index.html`: project cards, live-site title links, repository links, About, and Appearance/Studio UI
 - `styles.css`: responsive desktop/mobile layout and color themes
-- `script.js`: appearance presets, local Studio controls, screenshot galleries, and update checks
+- `script.js`: appearance presets, local Studio controls, and update checks
 - `favicon.svg`: n. identity
 
 ## Project imagery
@@ -43,8 +43,12 @@ The recommended public defaults are: featured project layout, bold geometric typ
 
 **Copy design settings** exports a JSON snapshot of the layout settings and selected appearance colors. These are local previews, not GitHub commits. To make a new design the public default, apply the exported choices to the tracked site CSS/HTML and merge a PR.
 
-The original Appearance picker continues to manage built-in and custom palettes independently. The public page still has five working project links and uses the captured application screenshots (now presented as paired images in four cards).
+The Appearance picker manages built-in and custom palettes independently. Each project card now shows a single captured app screenshot; extra image files are retained in the repository for a possible future slideshow.
 
 ## Page hierarchy
 
-The page opens directly on Projects (no separate hero or project directory), followed by About. The About section includes a compact GitHub profile with selected source links; a separate generic GitHub call-to-action section was removed. Project order is Everyday, Command, Botanica, EDC Pocket, then USF Playlist Catalog.
+The page opens directly on Projects (no separate hero or project directory), followed by About. The About section mentions Hollywood Rip Ride Rockit and includes a GitHub profile with all five public project repositories; a separate generic GitHub call-to-action section was removed. Project order is Everyday, Command, Botanica, EDC Pocket, then USF Playlist Catalog.
+
+## Simplified project cards
+
+Each card contains a direct GitHub repository link in its top bar, one non-interactive application screenshot, a project title linked to the live website, a short description and technology tags. Only the EDC Pocket and USF Playlist Catalog cards retain non-affiliation disclaimers. Action buttons, redundant category labels, gallery dialogs, extra secondary screenshots, and the "What it does" accordion have been removed from the page.
