@@ -12,7 +12,7 @@
   <title>Nick | Projects</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=3">
   <link rel="apple-touch-icon" href="./apple-touch-icon-v3.png">
-  <meta name="portfolio-release" content="studio-20261107-3">
+  <meta name="portfolio-release" content="studio-20261108-1">
   <script>
     // A unique refresh query also busts the CSS/JS caches for installed iPhone web apps.
     (() => {
@@ -50,12 +50,13 @@
       <section class="hero" aria-labelledby="hero-heading">
         <div class="hero-copy">
           <div class="intro"><span class="intro-dot"></span> Nick · Orlando, Florida</div>
-          <h1 id="hero-heading">I build <em>websites</em><br>and <em>apps.</em></h1>
-          <p>I work in theme park operations and build software outside of work. My projects start with things I want to organize, track or make easier.</p>
+          <h1 id="hero-heading">I build software<br><em>I actually use.</em></h1>
+          <p>Personal tools, inventory software for my family’s business, and projects built around my interests.</p>
           <div class="hero-actions">
             <a class="btn btn-accent" href="#projects">View projects</a>
-            <a class="btn btn-outline" href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">My GitHub</a>
+            <a class="btn btn-outline" href="https://github.com/DownAirOnly" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
+          <p class="hero-proof">5 projects <span aria-hidden="true">/</span> Live demos <span aria-hidden="true">/</span> Source code</p>
         </div>
         <aside class="hero-directory" aria-label="Quick links to projects">
           <div class="directory-top"><span class="directory-logo" aria-hidden="true">n<span>.</span></span><span>PROJECT INDEX</span><span>2026</span></div>
@@ -73,7 +74,8 @@
       <div class="project-head"><span class="project-index">01 / Personal app</span></div>
       <button class="screenshot screenshot-trigger" type="button" data-preview="everyday" aria-label="View Everyday screenshot gallery" aria-haspopup="dialog" aria-controls="screenshot-dialog">
         <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>View Everyday screenshot</span></span>
-        <img src="./assets/screenshots/everyday-home.png" alt="Real Everyday Home screen with fictional demo data" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
+        <img class="screenshot-main" src="./assets/screenshots/everyday-home.png" alt="Real Everyday Home screen with fictional demo data" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
+        <img class="screenshot-alt" src="./assets/screenshots/everyday-lifting.png" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1000" height="1900">
         <span class="screenshot-label">VIEW GALLERY <span aria-hidden="true">+</span></span>
       </button>
       <div class="project-main">
@@ -94,7 +96,8 @@
       <div class="project-head"><span class="project-index">02 / Inventory app</span></div>
       <button class="screenshot screenshot-trigger" type="button" data-preview="botanica" aria-label="View Botanica screenshot gallery" aria-haspopup="dialog" aria-controls="screenshot-dialog">
         <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>View Botanica screenshot</span></span>
-        <img src="./assets/screenshots/botanica-today.png" alt="Real Botanica Today screen with fictional demo inventory" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
+        <img class="screenshot-main" src="./assets/screenshots/botanica-today.png" alt="Real Botanica Today screen with fictional demo inventory" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1000" height="900">
+        <img class="screenshot-alt" src="./assets/screenshots/botanica-inventory.png" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1000" height="1900">
         <span class="screenshot-label">VIEW GALLERY <span aria-hidden="true">+</span></span>
       </button>
       <div class="project-main">
@@ -116,7 +119,8 @@
       <div class="project-head"><span class="project-index">03 / Festival planner</span></div>
       <button class="screenshot screenshot-trigger" type="button" data-preview="edc" aria-label="View EDC Pocket screenshot gallery" aria-haspopup="dialog" aria-controls="screenshot-dialog">
         <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>View EDC Pocket screenshot</span></span>
-        <img src="./assets/screenshots/edc-lineup.png" alt="EDC Pocket lineup displayed in the actual app with example saved sets" loading="lazy" decoding="async" width="1000" height="900">
+        <img class="screenshot-main" src="./assets/screenshots/edc-lineup.png" alt="EDC Pocket lineup displayed in the actual app with example saved sets" loading="lazy" decoding="async" width="1000" height="900">
+        <img class="screenshot-alt" src="./assets/screenshots/edc-plan.png" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1000" height="1900">
         <span class="screenshot-label">VIEW GALLERY <span aria-hidden="true">+</span></span>
       </button>
       <div class="project-main">
@@ -137,7 +141,8 @@
       <div class="project-head"><span class="project-index">04 / Project dashboard</span></div>
       <button class="screenshot screenshot-trigger" type="button" data-preview="command" aria-label="View Command screenshot gallery" aria-haspopup="dialog" aria-controls="screenshot-dialog">
         <span class="image-fallback" aria-hidden="true"><span class="fallback-mark">n.</span><span>View Command screenshot</span></span>
-        <img src="./assets/screenshots/command-home.png" alt="Command dashboard running with fictional projects and tasks" loading="lazy" decoding="async" width="1000" height="900">
+        <img class="screenshot-main" src="./assets/screenshots/command-home.png" alt="Command dashboard running with fictional projects and tasks" loading="lazy" decoding="async" width="1000" height="900">
+        <img class="screenshot-alt" src="./assets/screenshots/command-projects.png" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1000" height="1900">
         <span class="screenshot-label">VIEW GALLERY <span aria-hidden="true">+</span></span>
       </button>
       <div class="project-main">
@@ -192,7 +197,7 @@
   <dialog id="appearance-dialog" class="appearance-dialog" aria-labelledby="appearance-title">
     <div class="appearance-head"><div><span class="overline">MAKE IT YOURS</span><h2 id="appearance-title">Appearance<span class="dot">.</span></h2></div><button id="appearance-close" class="appearance-close" type="button" aria-label="Close appearance settings">Close</button></div>
     <p class="appearance-intro">Choose a color scheme or build your own. Changes show instantly and stay on this device.</p>
-    <button class="studio-launch" id="studio-open" type="button" aria-haspopup="dialog" aria-controls="studio-dialog"><span>Open Studio</span><small>Layout, typography, spacing and updates</small></button>
+    <button class="studio-launch" id="studio-open" type="button" aria-controls="studio-panel" aria-expanded="false"><span>Open Studio</span><small>Layout, typography, spacing and updates</small></button>
     <section class="appearance-section" aria-labelledby="preset-heading">
       <h3 id="preset-heading">Color palettes</h3>
       <div class="palette-grid" id="preset-palettes">
@@ -222,12 +227,23 @@
       <p id="palette-message" class="palette-message" role="status" aria-live="polite"></p>
     </section>
   </dialog>
-  <dialog id="studio-dialog" class="studio-dialog" aria-labelledby="studio-title">
+  <div id="studio-device-preview" class="studio-device-preview" hidden aria-label="Responsive portfolio preview">
+    <div id="studio-preview-frame" class="studio-preview-frame">
+      <iframe id="studio-preview-iframe" title="Portfolio responsive preview" loading="lazy"></iframe>
+    </div>
+  </div>
+  <section id="studio-panel" class="studio-panel" aria-labelledby="studio-title" hidden>
     <div class="studio-top">
       <div><span class="overline">LOCAL DESIGN TOOLS</span><h2 id="studio-title">Studio<span class="dot">.</span></h2></div>
-      <button class="studio-close" id="studio-close" type="button">Close</button>
+      <div class="studio-header-actions"><button class="studio-secondary studio-undo" id="studio-undo" type="button" disabled>Undo</button><button class="studio-secondary" id="studio-collapse" type="button" aria-expanded="true" aria-controls="studio-panel-body">Minimize</button><button class="studio-close" id="studio-close" type="button">Close</button></div>
     </div>
-    <p class="studio-intro">Adjust your portfolio while viewing it live. These settings affect only this device until you export them and commit a site change.</p>
+    <div id="studio-panel-body" class="studio-panel-body">
+    <div class="studio-device-controls" role="group" aria-label="Preview device">
+      <button class="studio-device-button" type="button" data-studio-device="live" aria-pressed="true">Live page</button>
+      <button class="studio-device-button" type="button" data-studio-device="phone" aria-pressed="false">Phone</button>
+      <button class="studio-device-button" type="button" data-studio-device="desktop" aria-pressed="false">Desktop</button>
+    </div>
+    <p class="studio-intro">Changes preview immediately. Phone and desktop modes simulate viewport widths. Settings stay on this device until you export them.</p>
     <div class="studio-section">
       <div class="studio-heading"><h3>Layout</h3><span class="studio-caption">Preview immediately</span></div>
       <label class="studio-control"><span>Desktop project layout</span>
@@ -263,7 +279,8 @@
       <div class="studio-updates"><button class="btn btn-accent" id="studio-force-refresh" type="button">Load latest version</button><button class="studio-secondary" id="studio-check-update" type="button">Check for update</button></div>
     </div>
     <p id="studio-message" class="studio-message" role="status" aria-live="polite"></p>
-  </dialog>
+    </div>
+  </section>
   <dialog id="screenshot-dialog" class="screenshot-dialog" aria-labelledby="dialog-title">
     <div class="dialog-bar"><h2 id="dialog-title">Project screenshots</h2><button id="dialog-close" type="button" aria-label="Close screenshot gallery">Close</button></div>
     <div class="gallery-stage" id="gallery-stage">
