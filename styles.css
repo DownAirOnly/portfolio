@@ -421,3 +421,7 @@ body[data-studio-type="editorial"] .directory-heading em { font-style: italic; f
   .studio-updates>* { width:100%; margin:0; }
   .studio-top h2 { font-size:34px; }
 }
+
+/* Portfolio identity: sea-glass n. dot, distinct from Command red. */
+:root{--brand-dot:#11A69E}
+.brand span,.directory-logo span,.footer-logo span{color:var(--brand-dot)}
