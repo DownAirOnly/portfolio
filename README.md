@@ -51,4 +51,4 @@ The page opens directly on Projects (no separate hero or project directory), fol
 
 ## Simplified project cards
 
-Each card contains a direct GitHub repository link in its top bar, one non-interactive application screenshot, a project title linked to the live website, a short description and technology tags. Only the EDC Pocket and USF Playlist Catalog cards retain non-affiliation disclaimers. Action buttons, redundant category labels, gallery dialogs, extra secondary screenshots, and the "What it does" accordion have been removed from the page.
+Each card has an outlined `/ repository-name` GitHub link and a separate **Live site** link side by side at the top, one non-interactive application screenshot, an always-underlined project title linking to the live website, a short description, and technology tags. Only the EDC Pocket and USF Playlist Catalog cards retain non-affiliation disclaimers. Action buttons, redundant category labels, gallery dialogs, extra secondary screenshots, and the "What it does" accordion have been removed from the page.
