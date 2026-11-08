@@ -277,6 +277,176 @@
     showMessage('Saved ' + name + '.');
   });
 
+
+  // Studio controls are a local preview. They never write to the public repository.
+  const studioDialog = document.getElementById('studio-dialog');
+  const studioMessage = document.getElementById('studio-message');
+  const studioStorageKey = 'nick-portfolio-studio-v1';
+  const studioDefaults = {
+    layout: 'featured', type: 'bold', width: 1190, spacing: 90, radius: 14,
+    compact: false, showDirectory: true
+  };
+  const studioIds = {
+    layout: 'studio-project-layout', type: 'studio-type',
+    width: 'studio-width', spacing: 'studio-space', radius: 'studio-radius',
+    compact: 'studio-compact', showDirectory: 'studio-directory'
+  };
+  const studioInput = key => document.getElementById(studioIds[key]);
+  let studio = { ...studioDefaults };
+  try {
+    const stored = JSON.parse(localStorage.getItem(studioStorageKey) || 'null');
+    if (stored && typeof stored === 'object') {
+      if (['featured', 'grid', 'stack'].includes(stored.layout)) studio.layout = stored.layout;
+      if (['bold', 'neutral', 'editorial'].includes(stored.type)) studio.type = stored.type;
+      for (const [key, limits] of Object.entries({ width: [960, 1440], spacing: [48, 120], radius: [0, 28] })) {
+        if (Number.isFinite(stored[key])) studio[key] = Math.max(limits[0], Math.min(limits[1], stored[key]));
+      }
+      if (typeof stored.compact === 'boolean') studio.compact = stored.compact;
+      if (typeof stored.showDirectory === 'boolean') studio.showDirectory = stored.showDirectory;
+    }
+  } catch {}
+
+  function applyStudio() {
+    document.body.dataset.projectLayout = studio.layout;
+    document.body.dataset.studioType = studio.type;
+    document.body.dataset.studioCompact = studio.compact ? 'yes' : 'no';
+    document.body.dataset.mobileDirectory = studio.showDirectory ? 'shown' : 'hidden';
+    root.style.setProperty('--studio-width', studio.width + 'px');
+    root.style.setProperty('--studio-section-space', studio.spacing + 'px');
+    root.style.setProperty('--studio-mobile-space', Math.max(36, Math.round(studio.spacing * .78)) + 'px');
+    root.style.setProperty('--studio-radius', studio.radius + 'px');
+    root.style.setProperty('--display', studio.type === 'neutral'
+      ? "'DM Sans',Arial,sans-serif"
+      : studio.type === 'editorial'
+        ? "Georgia,serif"
+        : "'Space Grotesk','DM Sans',Arial,sans-serif");
+  }
+  function syncStudioInputs() {
+    for (const key of ['layout', 'type', 'width', 'spacing', 'radius']) studioInput(key).value = studio[key];
+    studioInput('compact').checked = studio.compact;
+    studioInput('showDirectory').checked = studio.showDirectory;
+    for (const key of ['width', 'spacing', 'radius']) {
+      document.getElementById('studio-' + (key === 'spacing' ? 'space' : key) + '-value')
+        .textContent = studio[key] + ' px';
+    }
+  }
+  function saveStudio() {
+    applyStudio();
+    try { localStorage.setItem(studioStorageKey, JSON.stringify(studio)); } catch {}
+  }
+  applyStudio();
+  syncStudioInputs();
+  for (const key of Object.keys(studioIds)) {
+    studioInput(key).addEventListener(
+      ['width','spacing','radius'].includes(key) ? 'input' : 'change',
+      () => {
+        studio[key] = ['compact', 'showDirectory'].includes(key)
+          ? studioInput(key).checked
+          : ['width','spacing','radius'].includes(key) ? Number(studioInput(key).value) : studioInput(key).value;
+        saveStudio();
+        syncStudioInputs();
+        studioMessage.textContent = 'Preview updated on this device.';
+      }
+    );
+  }
+
+  const studioLaunch = document.getElementById('studio-open');
+  const studioClose = document.getElementById('studio-close');
+  function openStudio() {
+    if (appearanceDialog.open) appearanceDialog.close();
+    appearanceTrigger.setAttribute('aria-expanded', 'false');
+    studioDialog.showModal();
+  }
+  studioLaunch.addEventListener('click', openStudio);
+  studioClose.addEventListener('click', () => studioDialog.close());
+  studioDialog.addEventListener('click', event => {
+    if (event.target === studioDialog) studioDialog.close();
+  });
+  document.getElementById('studio-colors').addEventListener('click', () => {
+    studioDialog.close();
+    appearanceTrigger.click();
+  });
+  document.getElementById('studio-reset').addEventListener('click', () => {
+    studio = { ...studioDefaults };
+    saveStudio();
+    syncStudioInputs();
+    studioMessage.textContent = 'Layout defaults restored. Color palettes were kept.';
+  });
+  document.getElementById('studio-copy').addEventListener('click', async () => {
+    const output = document.getElementById('studio-export-output');
+    const data = JSON.stringify({
+      version: 1,
+      studio,
+      appearance: { selection: state.selection, colors: selectedColors() }
+    }, null, 2);
+    output.value = data;
+    output.hidden = false;
+    try {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(data);
+      studioMessage.textContent = 'Design settings copied. Paste them into a message to apply them permanently.';
+    } catch {
+      output.focus();
+      output.select();
+      studioMessage.textContent = 'Copy the settings from the text field to share them.';
+    }
+  });
+
+  // A direct reload with a unique query bypasses stale GitHub Pages and Safari web-app assets.
+  const releaseMeta = document.querySelector('meta[name="portfolio-release"]');
+  const release = releaseMeta ? releaseMeta.content : 'unknown';
+  const versionDisplay = document.getElementById('studio-version');
+  versionDisplay.textContent = release;
+  function reloadLatest() {
+    const destination = new URL(window.location.href);
+    destination.searchParams.set('refresh', Date.now().toString(36));
+    window.location.replace(destination.toString());
+  }
+  document.getElementById('studio-force-refresh').addEventListener('click', () => {
+    if (navigator.onLine === false) {
+      studioMessage.textContent = 'You are offline. Reconnect to load the latest site.';
+      return;
+    }
+    studioMessage.textContent = 'Loading the latest version...';
+    reloadLatest();
+  });
+
+  let lastUpdateCheck = 0;
+  let checking = false;
+  async function checkForUpdates(automatic = false) {
+    if (checking || navigator.onLine === false) return;
+    if (automatic && document.visibilityState === 'hidden') return;
+    const now = Date.now();
+    if (automatic && now - lastUpdateCheck < 45000) return;
+    lastUpdateCheck = now;
+    checking = true;
+    if (!automatic) studioMessage.textContent = 'Checking GitHub Pages...';
+    try {
+      const url = new URL('./index.html', document.baseURI);
+      url.searchParams.set('check', String(now));
+      const response = await fetch(url.toString(), { cache: 'no-store' });
+      if (!response.ok) throw new Error('Unable to fetch deployed page');
+      const latestHtml = await response.text();
+      const match = latestHtml.match(/<meta\s+name=["']portfolio-release["']\s+content=["']([^"']+)["']/i);
+      if (!match) throw new Error('Version not available');
+      if (match[1] !== release) {
+        studioMessage.textContent = 'New release detected. Updating...';
+        reloadLatest();
+        return;
+      }
+      if (!automatic) studioMessage.textContent = 'You have the latest published release.';
+    } catch {
+      if (!automatic) studioMessage.textContent = 'Could not check right now. You can still try Load latest.';
+    } finally { checking = false; }
+  }
+  document.getElementById('studio-check-update')
+    .addEventListener('click', () => checkForUpdates(false));
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') checkForUpdates(true);
+  });
+  window.addEventListener('pageshow', () => checkForUpdates(true));
+  window.setTimeout(() => checkForUpdates(true), 2000);
+
   const galleries = {
     everyday: {
       name: 'Everyday', url: 'https://downaironly.github.io/fitness-tracker/',
