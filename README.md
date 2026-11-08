@@ -2,7 +2,7 @@
 
 Live on GitHub Pages: https://downaironly.github.io/portfolio/
 
-A small portfolio with links to five public projects: Everyday, Botanica, EDC Pocket, Command, and the USF Playlist Catalog.
+A projects-first portfolio featuring Everyday, Command, Botanica, EDC Pocket, and the USF Playlist Catalog. Each project links to its live site and source repository.
 
 - `index.html`: content, project links and screenshot dialog
 - `styles.css`: responsive desktop/mobile layout and color themes
@@ -44,3 +44,7 @@ The recommended public defaults are: featured project layout, bold geometric typ
 **Copy design settings** exports a JSON snapshot of the layout settings and selected appearance colors. These are local previews, not GitHub commits. To make a new design the public default, apply the exported choices to the tracked site CSS/HTML and merge a PR.
 
 The original Appearance picker continues to manage built-in and custom palettes independently. The public page still has five working project links and uses the captured application screenshots (now presented as paired images in four cards).
+
+## Page hierarchy
+
+The page opens directly on Projects (no separate hero or project directory), followed by About. The About section includes a compact GitHub profile with selected source links; a separate generic GitHub call-to-action section was removed. Project order is Everyday, Command, Botanica, EDC Pocket, then USF Playlist Catalog.
