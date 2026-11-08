@@ -35,8 +35,12 @@ This static site does not register a service worker. GitHub Pages and iOS can st
 
 ## Studio
 
-Open **Appearance > Open Studio**. Change project layout, headline typography, width, spacing, card corners, compactness, or whether the mobile project directory is displayed. Each adjustment previews on the page and is saved to this browser under `nick-portfolio-studio-v1`.
+Open **Appearance > Open Studio**. Studio now opens as a non-modal bottom dock, so you can scroll and inspect the live page while changing project layout, headline typography, width, spacing, card corners, density, and mobile directory visibility. Tap **Minimize** to reduce the dock to a small handle or **Undo** to reverse the last layout change.
+
+Use **Live page**, **Phone**, or **Desktop** to switch between the actual page and embedded responsive previews. The phone and desktop previews are real same-origin versions of the portfolio in 390px and 1200px-wide iframes, not screenshots. As you adjust Studio values or switch colors, the previews receive the current settings. The desktop view is scaled down to fit on narrow displays.
+
+The recommended public defaults are: featured project layout, bold geometric typography, 1140px content width, 64px section spacing, 10px card corners, normal card density, and mobile directory hidden. Existing intentional custom settings stay in local storage; untouched older defaults are migrated.
 
 **Copy design settings** exports a JSON snapshot of the layout settings and selected appearance colors. These are local previews, not GitHub commits. To make a new design the public default, apply the exported choices to the tracked site CSS/HTML and merge a PR.
 
-The original Appearance picker continues to manage built-in and custom palettes independently.
+The original Appearance picker continues to manage built-in and custom palettes independently. The public page still has five working project links and uses the captured application screenshots (now presented as paired images in four cards).

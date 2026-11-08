@@ -115,6 +115,7 @@
     root.dataset.theme = light ? 'light' : 'dark';
     root.style.colorScheme = light ? 'light' : 'dark';
     if (themeMeta) themeMeta.content = colors.background;
+    window.dispatchEvent(new CustomEvent('portfolio-colors-changed', { detail: colors }));
   }
   function showMessage(text) { message.textContent = text; }
   function setInputs(colors) {
@@ -278,13 +279,19 @@
   });
 
 
-  // Studio controls are a local preview. They never write to the public repository.
-  const studioDialog = document.getElementById('studio-dialog');
+
+  // Studio is a non-modal bottom dock: the portfolio remains scrollable behind it.
+  const studioPanel = document.getElementById('studio-panel');
+  const studioPreviewStage = document.getElementById('studio-device-preview');
+  const studioPreviewFrame = document.getElementById('studio-preview-frame');
+  const studioPreviewIframe = document.getElementById('studio-preview-iframe');
+  const studioUndo = document.getElementById('studio-undo');
+  const studioCollapse = document.getElementById('studio-collapse');
   const studioMessage = document.getElementById('studio-message');
   const studioStorageKey = 'nick-portfolio-studio-v1';
   const studioDefaults = {
-    layout: 'featured', type: 'bold', width: 1190, spacing: 90, radius: 14,
-    compact: false, showDirectory: true
+    layout: 'featured', type: 'bold', width: 1140, spacing: 64, radius: 10,
+    compact: false, showDirectory: false
   };
   const studioIds = {
     layout: 'studio-project-layout', type: 'studio-type',
@@ -292,17 +299,32 @@
     compact: 'studio-compact', showDirectory: 'studio-directory'
   };
   const studioInput = key => document.getElementById(studioIds[key]);
-  let studio = { ...studioDefaults };
+  const studioClone = value => ({ ...value });
+  const studioValid = value =>
+    value && ['featured','grid','stack'].includes(value.layout) &&
+    ['bold','neutral','editorial'].includes(value.type);
+  const isPreviewChild = new URLSearchParams(window.location.search).get('studioPreview') === '1';
+  if (isPreviewChild) root.classList.add('studio-embedded');
+
+  let studio = studioClone(studioDefaults);
   try {
     const stored = JSON.parse(localStorage.getItem(studioStorageKey) || 'null');
-    if (stored && typeof stored === 'object') {
-      if (['featured', 'grid', 'stack'].includes(stored.layout)) studio.layout = stored.layout;
-      if (['bold', 'neutral', 'editorial'].includes(stored.type)) studio.type = stored.type;
-      for (const [key, limits] of Object.entries({ width: [960, 1440], spacing: [48, 120], radius: [0, 28] })) {
-        if (Number.isFinite(stored[key])) studio[key] = Math.max(limits[0], Math.min(limits[1], stored[key]));
+    if (studioValid(stored)) {
+      const isOldDefault = stored.layout === 'featured' && stored.type === 'bold' &&
+        stored.width === 1190 && stored.spacing === 90 && stored.radius === 14 &&
+        stored.compact === false && stored.showDirectory === true;
+      if (!isOldDefault) {
+        studio.layout = stored.layout;
+        studio.type = stored.type;
+        for (const [key, limits] of Object.entries({
+          width: [960, 1440], spacing: [48,120], radius: [0,28]
+        })) {
+          if (Number.isFinite(stored[key])) studio[key] =
+            Math.max(limits[0], Math.min(limits[1], stored[key]));
+        }
+        if (typeof stored.compact === 'boolean') studio.compact = stored.compact;
+        if (typeof stored.showDirectory === 'boolean') studio.showDirectory = stored.showDirectory;
       }
-      if (typeof stored.compact === 'boolean') studio.compact = stored.compact;
-      if (typeof stored.showDirectory === 'boolean') studio.showDirectory = stored.showDirectory;
     }
   } catch {}
 
@@ -313,90 +335,204 @@
     document.body.dataset.mobileDirectory = studio.showDirectory ? 'shown' : 'hidden';
     root.style.setProperty('--studio-width', studio.width + 'px');
     root.style.setProperty('--studio-section-space', studio.spacing + 'px');
-    root.style.setProperty('--studio-mobile-space', Math.max(36, Math.round(studio.spacing * .78)) + 'px');
+    root.style.setProperty('--studio-mobile-space',
+      Math.max(36, Math.round(studio.spacing * .78)) + 'px');
     root.style.setProperty('--studio-radius', studio.radius + 'px');
     root.style.setProperty('--display', studio.type === 'neutral'
       ? "'DM Sans',Arial,sans-serif"
-      : studio.type === 'editorial'
-        ? "Georgia,serif"
+      : studio.type === 'editorial' ? 'Georgia,serif'
         : "'Space Grotesk','DM Sans',Arial,sans-serif");
+    if (!isPreviewChild) sendPreviewState();
   }
+
   function syncStudioInputs() {
-    for (const key of ['layout', 'type', 'width', 'spacing', 'radius']) studioInput(key).value = studio[key];
+    for (const key of ['layout','type','width','spacing','radius'])
+      studioInput(key).value = studio[key];
     studioInput('compact').checked = studio.compact;
     studioInput('showDirectory').checked = studio.showDirectory;
-    for (const key of ['width', 'spacing', 'radius']) {
+    for (const key of ['width','spacing','radius']) {
       document.getElementById('studio-' + (key === 'spacing' ? 'space' : key) + '-value')
         .textContent = studio[key] + ' px';
     }
   }
+
   function saveStudio() {
     applyStudio();
     try { localStorage.setItem(studioStorageKey, JSON.stringify(studio)); } catch {}
   }
+
+  let deviceMode = 'live';
+  const undoHistory = [];
+  const sliderOrigins = new WeakMap();
+  function updateUndo() { studioUndo.disabled = undoHistory.length === 0; }
+  function rememberPrevious(previous) {
+    if (JSON.stringify(previous) === JSON.stringify(studio)) return;
+    undoHistory.push(studioClone(previous));
+    if (undoHistory.length > 30) undoHistory.shift();
+    updateUndo();
+  }
+  function sendPreviewState() {
+    if (deviceMode === 'live' || !studioPreviewIframe.contentWindow) return;
+    studioPreviewIframe.contentWindow.postMessage({
+      type: 'portfolio-studio-preview-state',
+      studio: studioClone(studio),
+      colors: copyColors(selectedColors())
+    }, location.origin);
+  }
+  function fitPreview() {
+    if (deviceMode === 'live' || studioPreviewStage.hidden) return;
+    const deviceWidth = deviceMode === 'phone' ? 390 : 1200;
+    const scale = Math.min(1, Math.max(0.1, (studioPreviewStage.clientWidth - 24) / deviceWidth));
+    const available = Math.max(160, studioPreviewStage.clientHeight - 20);
+    studioPreviewFrame.style.width = deviceWidth + 'px';
+    studioPreviewFrame.style.height = Math.round(available / scale) + 'px';
+    studioPreviewFrame.style.transform = 'translateX(-50%) scale(' + scale + ')';
+  }
+  function selectDevice(mode) {
+    if (!['live','phone','desktop'].includes(mode)) return;
+    deviceMode = mode;
+    studioPreviewStage.hidden = mode === 'live';
+    document.querySelectorAll('[data-studio-device]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.studioDevice === mode));
+    });
+    if (mode === 'live') return;
+    if (!studioPreviewIframe.getAttribute('src')) {
+      const previewUrl = new URL('./index.html', document.baseURI);
+      previewUrl.searchParams.set('studioPreview', '1');
+      studioPreviewIframe.src = previewUrl.toString();
+    }
+    requestAnimationFrame(() => { fitPreview(); sendPreviewState(); });
+  }
+  studioPreviewIframe.addEventListener('load', sendPreviewState);
+  window.addEventListener('resize', fitPreview);
+  window.addEventListener('portfolio-colors-changed', sendPreviewState);
+  document.querySelectorAll('[data-studio-device]').forEach(button => {
+    button.addEventListener('click', () => selectDevice(button.dataset.studioDevice));
+  });
+  window.addEventListener('message', event => {
+    if (!isPreviewChild || event.origin !== location.origin ||
+        event.source !== window.parent ||
+        !event.data || event.data.type !== 'portfolio-studio-preview-state') return;
+    const next = event.data.studio;
+    if (studioValid(next)) {
+      studio = {
+        layout: next.layout, type: next.type,
+        width: Number.isFinite(next.width) ? Math.max(960,Math.min(1440,next.width)) : studio.width,
+        spacing: Number.isFinite(next.spacing) ? Math.max(48,Math.min(120,next.spacing)) : studio.spacing,
+        radius: Number.isFinite(next.radius) ? Math.max(0,Math.min(28,next.radius)) : studio.radius,
+        compact: !!next.compact, showDirectory: !!next.showDirectory
+      };
+      applyStudio();
+    }
+    if (validColors(event.data.colors)) applyColors(event.data.colors);
+  });
+
   applyStudio();
   syncStudioInputs();
+  updateUndo();
+
   for (const key of Object.keys(studioIds)) {
-    studioInput(key).addEventListener(
-      ['width','spacing','radius'].includes(key) ? 'input' : 'change',
-      () => {
-        studio[key] = ['compact', 'showDirectory'].includes(key)
-          ? studioInput(key).checked
-          : ['width','spacing','radius'].includes(key) ? Number(studioInput(key).value) : studioInput(key).value;
-        saveStudio();
-        syncStudioInputs();
-        studioMessage.textContent = 'Preview updated on this device.';
-      }
-    );
+    const element = studioInput(key);
+    const isSlider = ['width','spacing','radius'].includes(key);
+    const applyInput = () => {
+      const previous = studioClone(studio);
+      if (isSlider && !sliderOrigins.has(element)) sliderOrigins.set(element, previous);
+      studio[key] = ['compact','showDirectory'].includes(key)
+        ? element.checked : isSlider ? Number(element.value) : element.value;
+      if (!isSlider) rememberPrevious(previous);
+      saveStudio();
+      syncStudioInputs();
+      studioMessage.textContent = 'Preview updated. Changes are saved on this device.';
+    };
+    element.addEventListener(isSlider ? 'input' : 'change', applyInput);
+    if (isSlider) element.addEventListener('change', () => {
+      const before = sliderOrigins.get(element);
+      if (before) rememberPrevious(before);
+      sliderOrigins.delete(element);
+    });
   }
+
+  studioUndo.addEventListener('click', () => {
+    if (!undoHistory.length) return;
+    studio = undoHistory.pop();
+    saveStudio();
+    syncStudioInputs();
+    updateUndo();
+    studioMessage.textContent = 'Undid the last layout change.';
+  });
 
   const studioLaunch = document.getElementById('studio-open');
   const studioClose = document.getElementById('studio-close');
+  function closeStudio() {
+    studioPanel.hidden = true;
+    studioPanel.dataset.collapsed = 'false';
+    document.body.classList.remove('studio-open','studio-collapsed');
+    studioLaunch.setAttribute('aria-expanded','false');
+    selectDevice('live');
+  }
   function openStudio() {
+    if (isPreviewChild) return;
     if (appearanceDialog.open) appearanceDialog.close();
-    appearanceTrigger.setAttribute('aria-expanded', 'false');
-    studioDialog.showModal();
+    appearanceTrigger.setAttribute('aria-expanded','false');
+    studioPanel.hidden = false;
+    studioPanel.dataset.collapsed = 'false';
+    document.body.classList.add('studio-open');
+    document.body.classList.remove('studio-collapsed');
+    studioCollapse.textContent = 'Minimize';
+    studioCollapse.setAttribute('aria-expanded','true');
+    studioLaunch.setAttribute('aria-expanded','true');
+    studioMessage.textContent = '';
   }
   studioLaunch.addEventListener('click', openStudio);
-  studioClose.addEventListener('click', () => studioDialog.close());
-  studioDialog.addEventListener('click', event => {
-    if (event.target === studioDialog) studioDialog.close();
+  studioClose.addEventListener('click', closeStudio);
+  studioCollapse.addEventListener('click', () => {
+    const collapsed = studioPanel.dataset.collapsed !== 'true';
+    studioPanel.dataset.collapsed = String(collapsed);
+    document.body.classList.toggle('studio-collapsed', collapsed);
+    studioCollapse.textContent = collapsed ? 'Expand' : 'Minimize';
+    studioCollapse.setAttribute('aria-expanded', String(!collapsed));
+    fitPreview();
   });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !studioPanel.hidden && !appearanceDialog.open) closeStudio();
+  });
+
   document.getElementById('studio-colors').addEventListener('click', () => {
-    studioDialog.close();
+    closeStudio();
     appearanceTrigger.click();
   });
   document.getElementById('studio-reset').addEventListener('click', () => {
-    studio = { ...studioDefaults };
+    const previous = studioClone(studio);
+    studio = studioClone(studioDefaults);
+    rememberPrevious(previous);
     saveStudio();
     syncStudioInputs();
-    studioMessage.textContent = 'Layout defaults restored. Color palettes were kept.';
+    studioMessage.textContent = 'Default layout restored. Your color palettes are unchanged.';
   });
   document.getElementById('studio-copy').addEventListener('click', async () => {
     const output = document.getElementById('studio-export-output');
     const data = JSON.stringify({
-      version: 1,
-      studio,
+      version: 2, studio,
       appearance: { selection: state.selection, colors: selectedColors() }
     }, null, 2);
     output.value = data;
     output.hidden = false;
     try {
-      if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard unavailable');
+      if (!navigator.clipboard || !navigator.clipboard.writeText)
+        throw new Error('Clipboard unavailable');
       await navigator.clipboard.writeText(data);
-      studioMessage.textContent = 'Design settings copied. Paste them into a message to apply them permanently.';
+      studioMessage.textContent = 'Design settings copied. Share them to publish this layout.';
     } catch {
       output.focus();
       output.select();
-      studioMessage.textContent = 'Copy the settings from the text field to share them.';
+      studioMessage.textContent = 'Select and copy the design settings shown below.';
     }
   });
 
-  // A direct reload with a unique query bypasses stale GitHub Pages and Safari web-app assets.
+  // Explicit update checks and cache-busted refreshes for installed iPhone web apps.
   const releaseMeta = document.querySelector('meta[name="portfolio-release"]');
   const release = releaseMeta ? releaseMeta.content : 'unknown';
-  const versionDisplay = document.getElementById('studio-version');
-  versionDisplay.textContent = release;
+  document.getElementById('studio-version').textContent = release;
   function reloadLatest() {
     const destination = new URL(window.location.href);
     destination.searchParams.set('refresh', Date.now().toString(36));
@@ -404,17 +540,16 @@
   }
   document.getElementById('studio-force-refresh').addEventListener('click', () => {
     if (navigator.onLine === false) {
-      studioMessage.textContent = 'You are offline. Reconnect to load the latest site.';
+      studioMessage.textContent = 'Offline. Reconnect to load the latest site.';
       return;
     }
-    studioMessage.textContent = 'Loading the latest version...';
     reloadLatest();
   });
 
   let lastUpdateCheck = 0;
   let checking = false;
   async function checkForUpdates(automatic = false) {
-    if (checking || navigator.onLine === false) return;
+    if (isPreviewChild || checking || navigator.onLine === false) return;
     if (automatic && document.visibilityState === 'hidden') return;
     const now = Date.now();
     if (automatic && now - lastUpdateCheck < 45000) return;
@@ -425,27 +560,25 @@
       const url = new URL('./index.html', document.baseURI);
       url.searchParams.set('check', String(now));
       const response = await fetch(url.toString(), { cache: 'no-store' });
-      if (!response.ok) throw new Error('Unable to fetch deployed page');
+      if (!response.ok) throw new Error('Could not fetch current site');
       const latestHtml = await response.text();
       const match = latestHtml.match(/<meta\s+name=["']portfolio-release["']\s+content=["']([^"']+)["']/i);
-      if (!match) throw new Error('Version not available');
-      if (match[1] !== release) {
-        studioMessage.textContent = 'New release detected. Updating...';
-        reloadLatest();
-        return;
-      }
+      if (!match) throw new Error('Release marker missing');
+      if (match[1] !== release) { reloadLatest(); return; }
       if (!automatic) studioMessage.textContent = 'You have the latest published release.';
     } catch {
-      if (!automatic) studioMessage.textContent = 'Could not check right now. You can still try Load latest.';
+      if (!automatic) studioMessage.textContent = 'Update check unavailable. Try Load latest.';
     } finally { checking = false; }
   }
   document.getElementById('studio-check-update')
     .addEventListener('click', () => checkForUpdates(false));
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') checkForUpdates(true);
-  });
-  window.addEventListener('pageshow', () => checkForUpdates(true));
-  window.setTimeout(() => checkForUpdates(true), 2000);
+  if (!isPreviewChild) {
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') checkForUpdates(true);
+    });
+    window.addEventListener('pageshow', () => checkForUpdates(true));
+    window.setTimeout(() => checkForUpdates(true), 2000);
+  }
 
   const galleries = {
     everyday: {

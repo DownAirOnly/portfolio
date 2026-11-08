@@ -425,3 +425,144 @@ body[data-studio-type="editorial"] .directory-heading em { font-style: italic; f
 /* Portfolio identity: sea-glass n. dot, distinct from Command red. */
 :root{--brand-dot:#11A69E}
 .brand span,.directory-logo span,.footer-logo span{color:var(--brand-dot)}
+
+/* Portfolio refresh: less hero scrolling and purposeful paired real-app screenshots. */
+.hero { padding: 76px 0 80px; gap: clamp(32px, 5vw, 74px); }
+.hero h1 { font-size: clamp(51px, 6vw, 82px); line-height: 1.08; max-width: 790px; }
+.hero h1 em, .hero h1 em:last-of-type { color: var(--accent); }
+.hero-copy>p { font-size: 17px; line-height: 1.65; max-width: 520px; margin-bottom: 25px; }
+.hero-proof {
+  color: var(--sub); font-size: 11px; font-weight: 700; letter-spacing: .045em;
+  margin: 23px 0 0; display: flex; align-items: center; flex-wrap: wrap; gap: 9px;
+}
+.hero-proof span { color: var(--secondary); opacity: .8; }
+.hero-directory { padding-top: 22px; }
+.directory-heading { margin: 29px 0 20px; }
+.directory-list a { padding-top: 13px; padding-bottom: 13px; }
+.project-grid { gap: 22px; }
+.project:not(#playlists) .screenshot {
+  min-height: 354px;
+  background:
+    radial-gradient(circle at 20% 22%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 55%),
+    radial-gradient(circle at 85% 82%, color-mix(in srgb, var(--secondary) 15%, transparent), transparent 55%),
+    var(--raised);
+}
+.project:first-child .screenshot { min-height: 428px; }
+.project:not(#playlists) .screenshot img.screenshot-main,
+.project:not(#playlists) .screenshot img.screenshot-alt {
+  position: absolute; inset: auto; top: 16px; height: auto;
+  width: min(39%, 225px); max-width: none; max-height: none;
+  border: 4px solid var(--line); border-radius: 22px;
+  box-shadow: 0 15px 38px #0008;
+  object-fit: contain; background: var(--card);
+  transition: transform .25s ease;
+}
+.project:not(#playlists) .screenshot img.screenshot-main {
+  left: 36%; z-index: 2; transform: translateX(-50%) rotate(-3deg);
+}
+.project:not(#playlists) .screenshot img.screenshot-alt {
+  left: 68%; top: 36px; z-index: 1; transform: translateX(-50%) rotate(4deg);
+}
+.project:not(#playlists) .screenshot:hover img.screenshot-main {
+  transform: translateX(-50%) translateY(-5px) rotate(-3deg);
+}
+.project:not(#playlists) .screenshot:hover img.screenshot-alt {
+  transform: translateX(-50%) translateY(-2px) rotate(4deg);
+}
+.project:not(#playlists) .screenshot-label { z-index: 4; }
+.project:not(#playlists) .screenshot:focus-visible { outline-offset: -3px; }
+@media(max-width:930px) {
+  .hero { padding: 60px 0 66px; gap: 30px; }
+  .hero-directory { max-width: 560px; }
+}
+@media(max-width:730px) {
+  .hero { padding: 36px 0 42px; gap: 0; }
+  .hero h1 { font-size: clamp(40px, 10.6vw, 55px); letter-spacing: -.075em; line-height: 1.07; margin: 16px 0 15px; }
+  .hero-copy>p { font-size: 15px; line-height: 1.6; margin-bottom: 22px; }
+  .hero-proof { font-size: 10px; margin-top: 20px; gap: 7px; }
+  .projects-section { padding-top: 45px; }
+  .project-grid { gap: 18px; }
+  .project:not(#playlists) .screenshot,
+  .project:first-child .screenshot { min-height: 340px; aspect-ratio: auto; }
+  .project:not(#playlists) .screenshot img.screenshot-main,
+  .project:not(#playlists) .screenshot img.screenshot-alt { width: min(44%, 187px); top: 13px; }
+  .project:not(#playlists) .screenshot img.screenshot-main { left: 35%; }
+  .project:not(#playlists) .screenshot img.screenshot-alt { left: 69%; top: 28px; }
+  .project-main { padding: 21px; }
+  .project h3 { font-size: clamp(27px,8vw,35px); }
+}
+@media(max-width:380px) {
+  .hero h1 { font-size: clamp(37px,10vw,42px); }
+  .project:not(#playlists) .screenshot,
+  .project:first-child .screenshot { min-height: 315px; }
+  .project:not(#playlists) .screenshot img.screenshot-main,
+  .project:not(#playlists) .screenshot img.screenshot-alt { width: 45%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .project:not(#playlists) .screenshot:hover img.screenshot-main { transform: translateX(-50%) rotate(-3deg); }
+  .project:not(#playlists) .screenshot:hover img.screenshot-alt { transform: translateX(-50%) rotate(4deg); }
+}
+
+/* Non-modal Studio dock: page remains interactive behind the controls. */
+.studio-panel[hidden], .studio-device-preview[hidden] { display: none !important; }
+.studio-panel {
+  position: fixed; z-index: 1050; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: min(730px, 100%); max-height: min(58dvh, 650px);
+  background: var(--card); color: var(--text);
+  border: 1px solid var(--line); border-bottom: 0;
+  border-radius: 18px 18px 0 0; box-shadow: 0 -12px 45px #000a;
+  display: flex; flex-direction: column;
+  padding: 0 18px env(safe-area-inset-bottom, 0px);
+}
+.studio-panel .studio-top {
+  padding: 13px 0 11px; display: flex; align-items: center;
+  flex: none; gap: 13px; border-bottom: 1px solid var(--line);
+}
+.studio-panel .studio-top h2 { font-size: 25px; margin: 0; }
+.studio-panel .studio-top .overline { font-size: 9px; }
+.studio-header-actions { display: flex; gap: 5px; align-items: center; }
+.studio-header-actions button { margin: 0; min-height: 40px; padding: 0 10px; }
+.studio-header-actions button:disabled { opacity: .38; cursor: not-allowed; }
+.studio-panel-body { overflow-y: auto; flex: 1; min-height: 0; overscroll-behavior: contain; padding-bottom: 14px; }
+.studio-panel[data-collapsed="true"] .studio-panel-body { display: none; }
+.studio-panel[data-collapsed="true"] { max-height: unset; }
+.studio-panel .studio-section { padding-top: 15px; padding-bottom: 11px; }
+.studio-panel .studio-intro { margin: 11px 0 13px; font-size: 12px; }
+.studio-panel .studio-control { margin: 11px 0; }
+.studio-panel .studio-heading { margin-bottom: 10px; }
+.studio-panel .studio-caption { margin-bottom: 8px; }
+.studio-device-controls {
+  display: flex; gap: 5px; padding: 11px 0 0;
+}
+.studio-device-button {
+  flex: 1; border: 1px solid var(--line); background: var(--raised);
+  color: var(--text); border-radius: 8px; min-height: 42px; cursor: pointer;
+  font: inherit; font-size: 12px; font-weight: 700;
+}
+.studio-device-button[aria-pressed="true"] {
+  border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent);
+}
+body.studio-open { padding-bottom: min(58dvh, 650px); }
+body.studio-open.studio-collapsed { padding-bottom: 78px; }
+.studio-device-preview {
+  position: fixed; z-index: 1040; inset: 0 0 min(58dvh, 650px);
+  background: color-mix(in srgb, var(--bg) 92%, black);
+  overflow: hidden; display: block;
+}
+body.studio-collapsed .studio-device-preview { bottom: 76px; }
+.studio-preview-frame {
+  position: absolute; top: 10px; left: 50%; transform-origin: top center;
+  border: 2px solid var(--line); border-radius: 12px; overflow: hidden;
+  background: var(--bg); box-shadow: 0 12px 40px #0009;
+}
+.studio-preview-frame iframe { display: block; width: 100%; height: 100%; border: 0; background: var(--bg); }
+html.studio-embedded .theme-toggle { display: none; }
+@media(max-width:730px) {
+  .studio-panel { max-height: 51dvh; padding: 0 12px env(safe-area-inset-bottom, 0px); }
+  .studio-panel .studio-top h2 { font-size: 22px; }
+  .studio-header-actions button { padding: 0 8px; font-size: 11px; min-height: 40px; min-width: 0; }
+  .studio-top { gap: 6px; }
+  .studio-device-preview { bottom: 51dvh; }
+  body.studio-open { padding-bottom: 51dvh; }
+  body.studio-collapsed.studio-open { padding-bottom: 72px; }
+}
