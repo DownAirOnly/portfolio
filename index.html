@@ -18,7 +18,9 @@
       const params = new URLSearchParams(location.search);
       const requested = params.get('refresh');
       const fallback = document.querySelector('meta[name="portfolio-release"]').content;
-      const version = requested && /^[a-zA-Z0-9_-]{1,80}$/.test(requested) ? requested : fallback;
+      const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+      const version = requested && /^[a-zA-Z0-9_-]{1,80}$/.test(requested)
+        ? requested : (standalone ? Date.now().toString(36) : fallback);
       const stylesheet = document.createElement('link');
       stylesheet.rel = 'stylesheet';
       stylesheet.href = './styles.css?v=' + encodeURIComponent(version);
