@@ -39,7 +39,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .directory-logo span{color:var(--accent)}
 .directory-heading{font-size:clamp(38px,4vw,54px);font-weight:700;line-height:1.07;letter-spacing:-.055em;margin:46px 0 29px}
 .directory-list{border-top:1px solid var(--line)}
-.directory-list a{padding:17px 0;display:grid;grid-template-columns:37px 1fr 20px;align-items:center;gap:10px;text-decoration:none;border-bottom:1px solid var(--line);font-size:17px;font-weight:700;transition:color .15s}
+.directory-list a{padding:17px 0;display:grid;grid-template-columns:37px minmax(0,1fr);align-items:center;gap:10px;text-decoration:none;border-bottom:1px solid var(--line);font-size:17px;font-weight:700;transition:color .15s}
 .directory-list a:hover{color:var(--accent)}
 .directory-number{color:var(--sub);font-size:12px;font-weight:500}
 .directory-foot{margin:20px 0 0;color:var(--sub);font-size:12px}
@@ -55,7 +55,7 @@ h2{letter-spacing:-.065em;line-height:1.15;font-size:clamp(43px,5vw,65px);margin
 .project:first-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr}
 .project-head{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;grid-column:1/-1;border-bottom:1px solid var(--line);position:relative}.project-head::before{content:'';position:absolute;top:0;left:22px;width:45px;height:3px;background:linear-gradient(90deg,var(--accent) 0 65%,var(--secondary) 65%)}
 .project-index{font-size:12px;color:var(--sub);font-weight:700}
-.project-arrow{color:var(--secondary);font-size:20px;line-height:1}
+
 .screenshot{display:block;position:relative;overflow:hidden;min-height:260px;background:var(--raised);text-decoration:none}
 .project:first-child .screenshot{min-height:400px}
 .screenshot img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:top center;transition:transform .35s;display:block;background:var(--raised)}
@@ -100,7 +100,7 @@ h2{letter-spacing:-.065em;line-height:1.15;font-size:clamp(43px,5vw,65px);margin
 .screenshot-dialog::backdrop{background:#050714db;backdrop-filter:blur(4px)}
 .dialog-bar,.dialog-foot{display:flex;align-items:center;justify-content:space-between;gap:14px}
 .dialog-bar{padding:0 0 12px}.dialog-bar h2{font-size:20px;letter-spacing:-.03em;margin:0}
-.dialog-bar button{background:var(--raised);color:var(--text);border:1px solid var(--line);border-radius:7px;min-width:44px;min-height:44px;cursor:pointer}
+.dialog-bar button{background:var(--raised);color:var(--text);border:1px solid var(--line);border-radius:7px;min-width:62px;min-height:44px;padding:0 12px;font-size:12px;font-weight:700;cursor:pointer}
 .screenshot-dialog img{width:100%;height:auto;max-height:min(67vh,720px);object-fit:contain;display:block;background:var(--raised);border-radius:6px}
 .dialog-foot{padding:12px 0 0}.dialog-foot p{font-size:12px;color:var(--sub);margin:0}.dialog-foot a{color:var(--accent);font-size:13px;font-weight:700}
 @media(max-width:930px){.hero{grid-template-columns:1fr;gap:45px;padding:77px 0}.hero-directory{max-width:640px}.directory-heading{margin:25px 0}.about-section{gap:35px}}
@@ -259,8 +259,8 @@ h1,h2,h3,.directory-heading,.directory-name{font-family:var(--display)}
 .appearance-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .appearance-head h2{font-size:clamp(31px,5vw,43px);margin:4px 0 0;letter-spacing:-.05em}
 .appearance-close{
-  flex:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);
-  background:var(--raised);color:var(--text);cursor:pointer
+  flex:none;min-width:62px;min-height:44px;padding:0 12px;border-radius:10px;border:1px solid var(--line);
+  background:var(--raised);color:var(--text);font-size:12px;font-weight:700;cursor:pointer
 }
 .appearance-intro{margin:8px 0 24px;color:var(--sub);font-size:14px;line-height:1.6}
 .appearance-section{border-top:1px solid var(--line);padding-top:18px;margin-top:19px}
@@ -325,3 +325,6 @@ h1,h2,h3,.directory-heading,.directory-name{font-family:var(--display)}
  .save-palette-row .btn{width:100%}
  .saved-palette-select .palette-preview{width:62px;min-width:62px}
 }
+
+/* Text-first controls: no ornamental arrows or emoji-like glyphs. */
+.directory-list a:hover .directory-name,.project h3 a:hover,.footer a:not(.footer-logo):hover{text-decoration:underline;text-underline-offset:4px}
