@@ -67,3 +67,18 @@ The copy uses direct first-person explanations of why the projects exist.
 About retains the nearly-nine-year Universal Orlando career, more than four
 years at Hollywood Rip Ride Rockit, and the current Park Services Lead role,
 without re-listing every product feature.
+
+## More depth where the work is
+
+The three most involved projects—Everyday, Command, and Botanica—now have short
+first-person build notes below their main presentations. They talk about actual
+repeated work: daily logging and Workout Buddy revisions, organizing what needs
+attention in Command, and designing Botanica around my mom's existing workflow.
+The notes use small text sections rather than another accordion or feature card.
+On mobile the screenshot remains above the longer note; desktop keeps the
+photograph beside the main text and note.
+
+About now includes a compact, two-stop Universal Orlando work history: more than
+four years at Hollywood Rip Ride Rockit as an Attractions Attendant, followed by
+the current Park Services Lead role at Islands of Adventure. No invented career
+metrics or technical credentials are used.

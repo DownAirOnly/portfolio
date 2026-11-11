@@ -1107,3 +1107,114 @@ body[data-project-layout="stack"] .project:first-child {
 @media(prefers-reduced-motion:reduce) {
   .project-repo-link, .project-live-link { transition: none; }
 }
+
+
+/* Depth without returning to identical boxed "feature list" cards.
+   The real screenshot still stays ahead of the longer notes on phones. */
+.project.project-deep,
+.project.project-deep:first-child {
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "head head" "main image" "story image";
+  align-items: start;
+}
+.project.project-deep:nth-child(even) {
+  grid-template-areas: "head head" "image main" "image story";
+}
+.project-deep .project-main { align-self: end; padding-bottom: 4px; }
+.project-deep .screenshot { align-self: center; }
+.project-story {
+  grid-area: story;
+  align-self: start;
+  max-width: 31rem;
+  padding-top: 20px;
+  margin-top: 13px;
+  border-top: 1px solid var(--line);
+}
+.project-story h4 {
+  font-family: var(--display);
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -.025em;
+  color: var(--text);
+  margin: 0 0 11px;
+}
+.project-story p {
+  max-width: 29rem;
+  color: var(--sub);
+  font-size: 14px;
+  line-height: 1.67;
+  margin: 0 0 11px;
+}
+.project-story p:last-child { margin-bottom: 0; }
+body[data-project-layout="grid"] .project-deep .project-story {
+  order: 4; width: 100%; margin-top: 18px;
+}
+body[data-studio-compact="yes"] .project-story { padding-top: 13px; margin-top: 10px; }
+
+/* Work experience is presented as a short history rather than a résumé card. */
+.about-copy .about-lead {
+  font-family: var(--display);
+  font-size: clamp(26px, 2.8vw, 38px);
+  line-height: 1.16;
+  font-weight: 600;
+  letter-spacing: -.045em;
+  color: var(--text);
+  margin: 0 0 19px;
+}
+.work-history { border-top: 1px solid var(--line); margin: 27px 0 26px; }
+.work-role {
+  display: grid;
+  grid-template-columns: minmax(80px, .32fr) minmax(0, 1fr);
+  gap: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.work-role-when {
+  display: block;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  padding-top: 4px;
+}
+.work-role-content h3 {
+  font-family: var(--display);
+  font-size: clamp(19px, 2.1vw, 25px);
+  letter-spacing: -.035em;
+  line-height: 1.24;
+  margin: 0 0 7px;
+}
+.about-copy .work-role-content p {
+  font-size: 14px;
+  line-height: 1.63;
+  margin: 0;
+  color: var(--sub);
+}
+@media(max-width:930px) {
+  .project-story p { font-size: 13px; }
+  .project-story { margin-top: 12px; }
+}
+@media(max-width:730px) {
+  .project.project-deep,
+  .project.project-deep:first-child,
+  .project.project-deep:nth-child(even),
+  body[data-project-layout="grid"] .project.project-deep,
+  body[data-project-layout="stack"] .project.project-deep {
+    grid-template-columns: minmax(0,1fr);
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "head" "main" "image" "story";
+    align-items: stretch;
+  }
+  .project-deep .project-main { align-self: auto; padding-bottom: 25px; }
+  .project-deep .screenshot { align-self: auto; }
+  .project-story,
+  body[data-project-layout="grid"] .project-deep .project-story {
+    order: initial; width: 100%; max-width: none;
+    margin-top: 21px; padding-top: 18px;
+  }
+  .project-story h4 { font-size: 19px; }
+  .project-story p { font-size: 14px; line-height: 1.67; }
+  .about-copy .about-lead { font-size: clamp(26px,8vw,34px); }
+  .work-role { grid-template-columns: 83px minmax(0,1fr); gap: 14px; }
+  .work-role-content h3 { font-size: 20px; }
+}

@@ -12,7 +12,7 @@
   <title>Nick | Projects</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=3">
   <link rel="apple-touch-icon" href="./apple-touch-icon-v3.png">
-  <meta name="portfolio-release" content="studio-20261111-1">
+  <meta name="portfolio-release" content="studio-20261111-2">
   <script>
     // A unique refresh query also busts the CSS/JS caches for installed iPhone web apps.
     (() => {
@@ -49,7 +49,7 @@
       <section class="projects-section" id="projects" aria-labelledby="projects-heading">
         <div class="section-heading"><h1 id="projects-heading">Projects<span class="dot">.</span></h1></div>
         <div class="project-grid">
-    <article class="project" id="everyday" aria-labelledby="everyday-title">
+    <article class="project project-deep" id="everyday" aria-labelledby="everyday-title">
       <div class="project-head"><a class="project-repo-link" href="https://github.com/DownAirOnly/fitness-tracker" target="_blank" rel="noopener noreferrer" aria-label="View fitness-tracker source on GitHub"><span class="project-repo-slash" aria-hidden="true">/</span><span class="project-repo-name">fitness-tracker</span></a><a class="project-live-link" href="https://downaironly.github.io/fitness-tracker/" target="_blank" rel="noopener noreferrer">Live site</a></div>
       <div class="screenshot screenshot-static">
         <span class="image-fallback" aria-hidden="true">Preview unavailable</span>
@@ -60,8 +60,13 @@
         <p class="project-description">Food, workouts, weigh-ins, and money. I wanted a single place to keep track of all of it.</p>
         <div class="stack" aria-label="Technology used"><span>JavaScript</span><span>Firebase</span><span>PWA</span></div>
       </div>
+          <section class="project-story" aria-label="More about building Everyday">
+        <h4>The one I keep coming back to</h4>
+        <p>I use Everyday when I eat, train, or weigh in. That means I notice every extra tap. I've spent a lot of time revisiting food entries, Workout Buddy, routines, and the weight graphs because those are screens I actually depend on.</p>
+        <p>It's changed along with my habits, and there's always something I want to make faster or easier to read.</p>
+      </section>
     </article>
-    <article class="project" id="command" aria-labelledby="command-title">
+    <article class="project project-deep" id="command" aria-labelledby="command-title">
       <div class="project-head"><a class="project-repo-link" href="https://github.com/DownAirOnly/planner" target="_blank" rel="noopener noreferrer" aria-label="View planner source on GitHub"><span class="project-repo-slash" aria-hidden="true">/</span><span class="project-repo-name">planner</span></a><a class="project-live-link" href="https://downaironly.github.io/planner/" target="_blank" rel="noopener noreferrer">Live site</a></div>
       <div class="screenshot screenshot-static">
         <span class="image-fallback" aria-hidden="true">Preview unavailable</span>
@@ -72,8 +77,13 @@
         <p class="project-description">I wanted somewhere to see my priorities, plans, and next steps without digging through separate lists.</p>
         <div class="stack" aria-label="Technology used"><span>JavaScript</span><span>Local-first</span><span>PWA</span></div>
       </div>
+          <section class="project-story" aria-label="More about building Command">
+        <h4>Trying to see what matters next</h4>
+        <p>My tasks, work schedule, plans for school, and money don't really exist separately. I've been working out how to bring them together without making another app full of lists I never check.</p>
+        <p>The hard part is deciding what deserves space on the home screen and what should stay out of the way.</p>
+      </section>
     </article>
-    <article class="project" id="botanica" aria-labelledby="botanica-title">
+    <article class="project project-deep" id="botanica" aria-labelledby="botanica-title">
       <div class="project-head"><a class="project-repo-link" href="https://github.com/DownAirOnly/botanica" target="_blank" rel="noopener noreferrer" aria-label="View botanica source on GitHub"><span class="project-repo-slash" aria-hidden="true">/</span><span class="project-repo-name">botanica</span></a><a class="project-live-link" href="https://downaironly.github.io/botanica/" target="_blank" rel="noopener noreferrer">Live site</a></div>
       <div class="screenshot screenshot-static">
         <span class="image-fallback" aria-hidden="true">Preview unavailable</span>
@@ -84,6 +94,11 @@
         <p class="project-description">I built this for my mom’s herbal business to track ingredients, recipes, supplies, and what needs making next.</p>
         <div class="stack" aria-label="Technology used"><span>React</span><span>TypeScript</span><span>Firestore</span></div>
       </div>
+          <section class="project-story" aria-label="More about building Botanica">
+        <h4>Built around how my mom works</h4>
+        <p>My mom needs to know what she has, what she's making, and what needs restocking. I've spent time working through ingredients, bottles and other packaging, recipes, and production records.</p>
+        <p>I don't want her to have to think about how the software is organized. It needs to follow the work she's already doing.</p>
+      </section>
     </article>
     <article class="project" id="edc" aria-labelledby="edc-title">
       <div class="project-head"><a class="project-repo-link" href="https://github.com/DownAirOnly/edc-planner" target="_blank" rel="noopener noreferrer" aria-label="View edc-planner source on GitHub"><span class="project-repo-slash" aria-hidden="true">/</span><span class="project-repo-name">edc-planner</span></a><a class="project-live-link" href="https://downaironly.github.io/edc-planner/" target="_blank" rel="noopener noreferrer">Live site</a></div>
@@ -117,8 +132,25 @@
         <div class="about-head"><h2 id="about-heading">About<span class="dot">.</span></h2></div>
         <div class="about-layout">
           <div class="about-copy">
-            <p>I've worked at Universal Orlando for nearly nine years, including more than four at Hollywood Rip Ride Rockit. I'm now a Park Services Lead at Islands of Adventure.</p>
-            <p>Outside of work, I make things I wish already existed. A way to track my own day-to-day stuff. Inventory software for my mom. Festival schedules for friends. A place to find the music I hear around the parks. I keep working on these projects because I actually use them.</p>
+            <p class="about-lead">Nearly nine years at Universal Orlando.</p>
+            <p>I've spent most of my working life in the parks. The two roles I've spent the most time in are pretty different, but both involve working with people and paying attention to what's happening around you.</p>
+            <div class="work-history" aria-label="Work at Universal Orlando">
+              <div class="work-role">
+                <span class="work-role-when">Over four years</span>
+                <div class="work-role-content">
+                  <h3>Hollywood Rip Ride Rockit</h3>
+                  <p>I worked as an Attractions Attendant for more than four years, helping run the ride and working directly with guests and the team on busy park days.</p>
+                </div>
+              </div>
+              <div class="work-role">
+                <span class="work-role-when">Now</span>
+                <div class="work-role-content">
+                  <h3>Islands of Adventure</h3>
+                  <p>I'm a Park Services Lead. A lot of my work is keeping track of what needs attention, helping the team, and adapting as priorities change during a shift.</p>
+                </div>
+              </div>
+            </div>
+            <p>Outside of work, I end up making things I wish I could find. Some are for me, some for my mom or my friends. The longer I use them, the more things I find that I want to change.</p>
           </div>
           <aside class="github-profile" aria-label="GitHub profile and project repositories">
             <div class="github-profile-header">
