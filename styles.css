@@ -756,3 +756,354 @@ html.studio-embedded .theme-toggle { display: none; }
   .project-repo-link,
   .project-live-link { min-height: 43px; padding: 0 11px; }
 }
+
+
+/*
+ * Editorial archive, first pass.
+ * Project content lives on the page instead of inside five identical UI cards.
+ * All colors inherit the existing Appearance picker; no baked-in gaming graphics.
+ */
+.projects-section { padding-top: clamp(32px, 4vw, 58px); }
+.projects-section .section-heading { margin-bottom: 38px; }
+.project-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+.project,
+.project:first-child {
+  display: grid;
+  grid-column: auto;
+  grid-template-columns: minmax(0, .87fr) minmax(0, 1.13fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "head head" "main image";
+  align-items: center;
+  column-gap: clamp(28px, 5.8vw, 96px);
+  padding: clamp(42px, 5vw, 76px) 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+  min-width: 0;
+  transition: none;
+}
+.project:hover,
+.project:focus-within { border-color: var(--line); }
+.project:first-child {
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  padding-top: 30px;
+  padding-bottom: clamp(56px, 6vw, 88px);
+}
+.project:nth-child(even) { grid-template-areas: "head head" "image main"; }
+.project#playlists {
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+  padding-bottom: 10px;
+}
+.project-head {
+  grid-area: head;
+  padding: 0 0 20px;
+  border: 0;
+  min-height: 0;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.project-head::before { display: none; }
+.project-repo-link {
+  min-height: 38px;
+  padding: 0 10px;
+  background: transparent;
+  border-color: var(--line);
+  border-radius: 3px;
+  color: var(--text);
+  letter-spacing: 0;
+}
+.project-repo-link:hover { background: var(--raised); }
+.project-live-link {
+  padding: 7px 0;
+  min-height: 38px;
+  border: 0;
+  border-bottom: 1px solid var(--accent);
+  border-radius: 0;
+  background: none;
+  color: var(--text);
+  font-size: 13px;
+}
+.project-live-link:hover,
+.project-live-link:focus-visible {
+  background: none;
+  border-color: var(--secondary);
+  color: var(--accent);
+}
+.project-main {
+  grid-area: main;
+  align-self: center;
+  display: block;
+  padding: 6px 0 12px;
+  min-width: 0;
+  max-width: 540px;
+}
+.project h3 {
+  font-family: var(--display);
+  font-size: clamp(39px, 5.2vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -.075em;
+  font-weight: 700;
+  margin: 0 0 24px;
+}
+.project:first-child h3 { font-size: clamp(60px, 7.5vw, 104px); }
+.project h3 a {
+  color: var(--text);
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 8px;
+}
+.project h3 a:hover, .project h3 a:focus-visible {
+  color: var(--text);
+  text-decoration-color: var(--secondary);
+}
+.project-description {
+  max-width: 30rem;
+  margin: 0 0 25px;
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.65;
+  color: var(--sub);
+  letter-spacing: -.015em;
+}
+.project:first-child .project-description {
+  font-size: clamp(18px, 1.7vw, 21px);
+  color: var(--text);
+}
+.project-main .stack {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.project-main .stack span {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 0;
+  color: var(--sub);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .015em;
+}
+.project-main .stack span:not(:last-child)::after {
+  content: " / ";
+  color: var(--secondary);
+  white-space: pre;
+}
+.project-note {
+  max-width: 32rem;
+  margin: 22px 0 0;
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--sub);
+  line-height: 1.6;
+}
+.project .screenshot,
+.project:first-child .screenshot {
+  grid-area: image;
+  position: relative;
+  width: 100%;
+  height: clamp(290px, 30vw, 385px);
+  min-height: 0;
+  aspect-ratio: auto;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 0;
+  background: var(--card);
+}
+.project:first-child .screenshot {
+  height: clamp(365px, 38vw, 510px);
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+}
+.project:nth-child(3) .screenshot {
+  background: color-mix(in srgb, var(--secondary) 4%, var(--card));
+}
+.project:not(#playlists) .screenshot-static img.screenshot-main {
+  position: absolute;
+  top: 17px;
+  left: 50%;
+  width: min(55%, 220px);
+  height: auto;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  border-radius: 11px 11px 0 0;
+  box-shadow: 0 15px 40px #0006;
+  object-fit: contain;
+  transform: translateX(-50%);
+  transition: none;
+  background: transparent;
+}
+.project:first-child:not(#playlists) .screenshot-static img.screenshot-main {
+  top: 21px;
+  width: min(57%, 294px);
+}
+.project:not(#playlists) .screenshot-static:hover img.screenshot-main {
+  transform: translateX(-50%);
+}
+.project#playlists .screenshot-static img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform: none;
+}
+.project .screenshot-static .image-fallback { z-index: 0; }
+body[data-studio-compact="yes"] .project-main {
+  padding: 6px 0;
+}
+body[data-studio-compact="yes"] .project-description { margin-bottom: 13px; }
+body[data-project-layout="grid"] .project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+body[data-project-layout="grid"] .project,
+body[data-project-layout="grid"] .project:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 26px 0;
+  gap: 0;
+}
+body[data-project-layout="grid"] .project .screenshot { order: 2; height: 300px; }
+body[data-project-layout="grid"] .project .project-head { order: 1; }
+body[data-project-layout="grid"] .project .project-main { order: 3; padding-top: 22px; }
+body[data-project-layout="grid"] .project:first-child h3 { font-size: clamp(39px, 5vw, 60px); }
+body[data-project-layout="stack"] .project,
+body[data-project-layout="stack"] .project:first-child {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+/* Override the older paired-screenshot backgrounds without replacing stored themes. */
+.project:not(#playlists) .screenshot.screenshot-static {
+  background: var(--card);
+  isolation: auto;
+}
+.project:first-child:not(#playlists) .screenshot.screenshot-static {
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+}
+.project:nth-child(3):not(#playlists) .screenshot.screenshot-static {
+  background: color-mix(in srgb, var(--secondary) 4%, var(--card));
+}
+
+/* The GitHub section reads like an index, not a dashboard widget. */
+.github-profile {
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  padding: 22px 0 0;
+}
+.github-repos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.github-repos a {
+  display: block;
+  padding: 9px 0;
+  min-height: 39px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  font-size: 12px;
+  font-weight: 500;
+}
+.github-repos a:hover,
+.github-repos a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.github-profile-link { margin-top: 17px; }
+.about-copy p { max-width: 38rem; line-height: 1.8; }
+.about-copy p:first-child { font-weight: 500; }
+
+@media(max-width:930px) {
+  .project, .project:first-child { column-gap: 28px; }
+  .project:first-child h3 { font-size: clamp(52px, 7vw, 80px); }
+  .project h3 { font-size: clamp(36px, 5vw, 58px); }
+}
+
+@media(max-width:730px) {
+  .projects-section { padding-top: 31px; }
+  body[data-project-layout="grid"] .project-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .projects-section .section-heading { margin-bottom: 28px; }
+  .project,
+  .project:first-child,
+  .project:nth-child(even),
+  .project#playlists,
+  body[data-project-layout="stack"] .project,
+  body[data-project-layout="stack"] .project:first-child,
+  body[data-project-layout="grid"] .project,
+  body[data-project-layout="grid"] .project:first-child {
+    display: grid;
+    grid-template-columns: minmax(0,1fr);
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "head" "main" "image";
+    gap: 0;
+    padding: 33px 0 46px;
+    border-top: 1px solid var(--line);
+  }
+  .project:first-child { padding-top: 27px; }
+  .project-head { padding: 0 0 20px; gap: 15px; }
+  .project-repo-link { min-height: 37px; }
+  .project-live-link { min-height: 37px; }
+  .project-main,
+  body[data-project-layout="grid"] .project .project-main {
+    padding: 0 0 25px;
+    max-width: none;
+  }
+  .project h3,
+  .project:first-child h3,
+  body[data-project-layout="grid"] .project:first-child h3 {
+    font-size: clamp(43px, 12vw, 66px);
+    margin-bottom: 17px;
+    line-height: 1.04;
+  }
+  .project#playlists h3 { font-size: clamp(38px, 10.3vw, 60px); }
+  .project-description,
+  .project:first-child .project-description {
+    font-size: 16px;
+    line-height: 1.64;
+    margin-bottom: 17px;
+  }
+  .project-note { margin-top: 17px; }
+  .project .screenshot,
+  .project:first-child .screenshot,
+  body[data-project-layout="grid"] .project .screenshot {
+    order: initial;
+    min-height: 0;
+    height: clamp(290px, 77vw, 375px);
+    width: 100%;
+  }
+  .project:first-child .screenshot { height: clamp(350px, 93vw, 445px); }
+  .project:not(#playlists) .screenshot-static img.screenshot-main {
+    width: min(61%, 235px);
+    top: 14px;
+  }
+  .project:first-child:not(#playlists) .screenshot-static img.screenshot-main {
+    width: min(65%, 275px);
+    top: 19px;
+  }
+  .about-copy p { line-height: 1.75; }
+  .github-profile { padding-top: 22px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .project-repo-link, .project-live-link { transition: none; }
+}
