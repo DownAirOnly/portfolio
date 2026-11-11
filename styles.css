@@ -989,6 +989,18 @@ body[data-project-layout="stack"] .project:first-child {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
+/* Override the older paired-screenshot backgrounds without replacing stored themes. */
+.project:not(#playlists) .screenshot.screenshot-static {
+  background: var(--card);
+  isolation: auto;
+}
+.project:first-child:not(#playlists) .screenshot.screenshot-static {
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+}
+.project:nth-child(3):not(#playlists) .screenshot.screenshot-static {
+  background: color-mix(in srgb, var(--secondary) 4%, var(--card));
+}
+
 /* The GitHub section reads like an index, not a dashboard widget. */
 .github-profile {
   background: none;
@@ -1030,6 +1042,7 @@ body[data-project-layout="stack"] .project:first-child {
 
 @media(max-width:730px) {
   .projects-section { padding-top: 31px; }
+  body[data-project-layout="grid"] .project-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .projects-section .section-heading { margin-bottom: 28px; }
   .project,
   .project:first-child,
