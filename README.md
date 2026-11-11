@@ -49,6 +49,21 @@ The Appearance picker manages built-in and custom palettes independently. Each p
 
 The page opens directly on Projects (no separate hero or project directory), followed by About. The About section mentions Hollywood Rip Ride Rockit and includes a GitHub profile with all five public project repositories; a separate generic GitHub call-to-action section was removed. Project order is Everyday, Command, Botanica, EDC Pocket, then USF Playlist Catalog.
 
-## Simplified project cards
+## Editorial project archive
 
-Each card has an outlined `/ repository-name` GitHub link and a separate **Live site** link side by side at the top, one non-interactive application screenshot, an always-underlined project title linking to the live website, a short description, and technology tags. Only the EDC Pocket and USF Playlist Catalog cards retain non-affiliation disclaimers. Action buttons, redundant category labels, gallery dialogs, extra secondary screenshots, and the "What it does" accordion have been removed from the page.
+The projects page now uses open editorial rows instead of identical rounded cards.
+Everyday has the most prominent title and image area, while Command, Botanica,
+EDC Pocket, and USF Playlist Catalog alternate media/text placement on desktop.
+On phones, each project becomes a single vertical sequence: repository link,
+title, short description, technology list, then one real screenshot.
+
+Each project title links to its live website, an outlined repository slug links
+to the GitHub source, and a quieter live-site link remains beside it. The layout
+continues to use the Appearance palette variables and Studio's Featured, Grid,
+and Stack options; the mobile layout stays one column. Only EDC and Universal
+non-affiliation notes remain.
+
+The copy uses direct first-person explanations of why the projects exist.
+About retains the nearly-nine-year Universal Orlando career, more than four
+years at Hollywood Rip Ride Rockit, and the current Park Services Lead role,
+without re-listing every product feature.
