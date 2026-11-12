@@ -2,7 +2,7 @@
 
 Live on GitHub Pages: https://downaironly.github.io/portfolio/
 
-A projects-first portfolio featuring Everyday, Command, Botanica, EDC Pocket, and the USF Playlist Catalog. Each project links to its live site and source repository.
+A projects-first portfolio featuring Everyday, Command, Botanica, Fest, and the USF Playlist Catalog. Each project links to its live site and source repository.
 
 - `index.html`: project cards, live-site title links, repository links, About, and Appearance/Studio UI
 - `styles.css`: responsive desktop/mobile layout and color themes
@@ -13,7 +13,7 @@ A projects-first portfolio featuring Everyday, Command, Botanica, EDC Pocket, an
 
 Everyday and Botanica screenshots are rendered from the **actual public application source** in GitHub Actions using fictional sample-data fixtures. A temporary build-time account harness is applied to Botanica without modifying its production repository.
 
-EDC Pocket and Command use the separate `capture-new-app-screenshots.yml` workflow, which checks out their GitHub repositories, serves them locally, adds fictional festival picks/projects/tasks, and captures two real screens for each with Playwright. No personal accounts, cloud sign-in, or private data are used in these captures.
+Fest and Command use the separate `capture-new-app-screenshots.yml` workflow, which checks out their GitHub repositories, serves them locally, adds fictional festival picks/projects/tasks, and captures two real screens for each with Playwright. No personal accounts, cloud sign-in, or private data are used in these captures.
 
 The USF Playlist Catalog thumbnail uses a public website capture service.
 
@@ -47,13 +47,13 @@ The Appearance picker manages built-in and custom palettes independently. Each p
 
 ## Page hierarchy
 
-The page opens directly on Projects (no separate hero or project directory), followed by About. The About section mentions Hollywood Rip Ride Rockit and includes a GitHub profile with all five public project repositories; a separate generic GitHub call-to-action section was removed. Project order is Everyday, Command, Botanica, EDC Pocket, then USF Playlist Catalog.
+The page opens directly on Projects (no separate hero or project directory), followed by About. The About section mentions Hollywood Rip Ride Rockit and includes a GitHub profile with all five public project repositories; a separate generic GitHub call-to-action section was removed. Project order is Everyday, Command, Botanica, Fest, then USF Playlist Catalog.
 
 ## Editorial project archive
 
 The projects page now uses open editorial rows instead of identical rounded cards.
 Everyday has the most prominent title and image area, while Command, Botanica,
-EDC Pocket, and USF Playlist Catalog alternate media/text placement on desktop.
+Fest, and USF Playlist Catalog alternate media/text placement on desktop.
 On phones, each project becomes a single vertical sequence: repository link,
 title, short description, technology list, then one real screenshot.
 
@@ -82,3 +82,12 @@ About now includes a compact, two-stop Universal Orlando work history: more than
 four years at Hollywood Rip Ride Rockit as an Attractions Attendant, followed by
 the current Park Services Lead role at Islands of Adventure. No invented career
 metrics or technical credentials are used.
+
+## Updated sample screenshots (November 12, 2026)
+
+The portfolio now displays `everyday-demo-20261112.webp`, `command-demo-20261112.webp`, and `fest-demo-20261112.webp`.
+These screenshots originate from the real app interfaces, but have been edited for safe public display: device status indicators are omitted, Everyday food names and nutrition numbers are fictional (980 calories, 78 g protein across the six sample foods), and Command's visible January shift dates/times are fictional. These are **examples**, not user records. The three portrait images all use the same 852×1847 resolution.
+
+The Fest card replaces the former EDC Pocket name and links to the existing `edc-planner` repository. Icons are shown beside Everyday, Command, Botanica, and Fest names; no icon is used for the USF Playlist Catalog.
+
+The earlier PNG capture assets and GitHub Actions workflows remain in the repository but are no longer selected for these three project thumbnails; they can be refreshed independently without replacing the portfolio's selected sample images.
