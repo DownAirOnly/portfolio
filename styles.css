@@ -1218,3 +1218,50 @@ body[data-studio-compact="yes"] .project-story { padding-top: 13px; margin-top: 
   .work-role { grid-template-columns: 83px minmax(0,1fr); gap: 14px; }
   .work-role-content h3 { font-size: 20px; }
 }
+
+
+/* Individual project identities: each app's own icon lives beside its name. */
+.project-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(14px,2vw,30px);
+  width: 100%;
+  margin-bottom: 24px;
+}
+.project-title-row h3 {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+.project-app-icon {
+  display: block;
+  width: clamp(44px,4.6vw,62px);
+  height: clamp(44px,4.6vw,62px);
+  object-fit: contain;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: transparent;
+}
+.project:first-child .project-app-icon { width: clamp(48px,5.1vw,68px); height: clamp(48px,5.1vw,68px); }
+body[data-project-layout="grid"] .project-title-row { align-items: flex-start; }
+body[data-project-layout="grid"] .project-app-icon { width: 46px; height: 46px; }
+@media(max-width:730px) {
+  .project-title-row { gap: 10px; margin-bottom: 17px; align-items: center; }
+  .project-app-icon, .project:first-child .project-app-icon {
+    width: clamp(42px,11vw,52px);
+    height: clamp(42px,11vw,52px);
+    border-radius: 10px;
+  }
+  .project#playlists .project-title-row { margin-bottom: 17px; }
+}
+
+/* All non-featured app screenshots—including Fest—share the same frame size. */
+.project:not(:first-child):not(#playlists) .screenshot-static img.screenshot-main {
+  width: min(55%,220px);
+}
+@media(max-width:730px) {
+  .project:not(:first-child):not(#playlists) .screenshot-static img.screenshot-main {
+    width: min(61%,235px);
+  }
+}
