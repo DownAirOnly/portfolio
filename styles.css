@@ -1265,3 +1265,30 @@ body[data-project-layout="grid"] .project-app-icon { width: 46px; height: 46px; 
     width: min(61%,235px);
   }
 }
+
+
+/* November refresh: an editorial caption, not another hero or marketing panel. */
+.project-intro {
+  margin: 11px 0 0;
+  max-width: 34rem;
+  color: var(--sub);
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.project#bogo .project-title-row h3 a { text-transform: none; }
+.project#bogo .screenshot-static,
+.project#machete .screenshot-static { background: var(--card); }
+@media(max-width:730px) {
+  .project-intro { font-size: 13px; margin-top: 8px; }
+}
+/* Retain the same portrait image treatment for Machete and bogo. as the other apps. */
+.project#machete .screenshot-static img.screenshot-main,
+.project#bogo .screenshot-static img.screenshot-main {
+  width: min(55%, 220px);
+}
+@media(max-width:730px) {
+  .project#machete .screenshot-static img.screenshot-main,
+  .project#bogo .screenshot-static img.screenshot-main { width: min(61%, 235px); }
+}

@@ -1,0 +1,87 @@
+name: Refresh new project previews
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/refresh-project-previews.yml"
+      - "scripts/refresh-project-previews.mjs"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - name: Checkout portfolio
+        uses: actions/checkout@v4
+        with:
+          path: portfolio
+          persist-credentials: true
+
+      - name: Checkout Machete app
+        uses: actions/checkout@v4
+        with:
+          repository: DownAirOnly/machete
+          ref: main
+          path: machete
+          persist-credentials: false
+
+      - name: Checkout bogo. app
+        uses: actions/checkout@v4
+        with:
+          repository: DownAirOnly/bogo
+          ref: main
+          path: bogo
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install browser
+        run: |
+          cd portfolio
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Serve latest real application code locally
+        run: |
+          python3 -m http.server 4195 --directory machete > /tmp/portfolio-machete.log 2>&1 &
+          python3 -m http.server 4196 --directory bogo > /tmp/portfolio-bogo.log 2>&1 &
+          for i in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:4195/ >/dev/null && curl -fsS http://127.0.0.1:4196/ >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/portfolio-machete.log /tmp/portfolio-bogo.log
+          exit 1
+
+      - name: Capture project screens with sample data
+        run: node portfolio/scripts/refresh-project-previews.mjs portfolio/assets/screenshots portfolio/index.html
+
+      - name: Commit screenshot refresh to GitHub Pages
+        run: |
+          cd portfolio
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/screenshots/machete-demo-20261126.png assets/screenshots/bogo-demo-20261126.png index.html
+          if git diff --staged --quiet; then
+            echo "Nothing new to publish."
+          else
+            git commit -m "Capture Machete and bogo previews using public and fictional data"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Preserve captures for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-refresh-previews
+          path: |
+            portfolio/assets/screenshots/machete-demo-20261126.png
+            portfolio/assets/screenshots/bogo-demo-20261126.png
+          if-no-files-found: ignore
