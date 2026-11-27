@@ -2,7 +2,7 @@
 
 Live on GitHub Pages: https://downaironly.github.io/portfolio/
 
-A projects-first portfolio featuring Everyday, Command, Botanica, Fest, and the USF Playlist Catalog. Each project links to its live site and source repository.
+A projects-first archive featuring Everyday, Command, Botanica, Fest, Machete, bogo., and the USF Playlist Catalog. Each project links to its live site and source repository.
 
 - `index.html`: project cards, live-site title links, repository links, About, and Appearance/Studio UI
 - `styles.css`: responsive desktop/mobile layout and color themes
@@ -16,6 +16,8 @@ Everyday and Botanica screenshots are rendered from the **actual public applicat
 Fest and Command use the separate `capture-new-app-screenshots.yml` workflow, which checks out their GitHub repositories, serves them locally, adds fictional festival picks/projects/tasks, and captures two real screens for each with Playwright. No personal accounts, cloud sign-in, or private data are used in these captures.
 
 The USF Playlist Catalog thumbnail uses a public website capture service.
+
+Machete and bogo. have a separate, merge-triggered screenshot refresh using Playwright against freshly checked-out application source. Machete is provided an isolated fictional purchase history and local-only demo login for capture purposes; bogo. is rendered using its public deal catalog. Neither workflow reads private accounts, personal purchase files, or phone status bars. The refresh commits local screenshot files to the portfolio when successful.
 
 No private account data, stock records, or credentials are embedded in this portfolio.
 
@@ -91,3 +93,9 @@ These screenshots originate from the real app interfaces, but have been edited f
 The Fest card replaces the former EDC Pocket name and links to the existing `edc-planner` repository. Icons are shown beside Everyday, Command, Botanica, and Fest names; no icon is used for the USF Playlist Catalog.
 
 The earlier PNG capture assets and GitHub Actions workflows remain in the repository but are no longer selected for these three project thumbnails; they can be refreshed independently without replacing the portfolio's selected sample images.
+
+## November 2026 project expansion
+
+Machete and bogo. are part of the existing editorial project archive, after Fest and before the USF Playlist Catalog. Both are public GitHub Pages projects with direct live-site and repository links. The GitHub index lists all seven projects. All six app icons are copied from their respective source repositories into `assets/icons/`; the playlist catalog intentionally has no icon. The icon artwork is not AI-generated.
+
+The new screenshot workflow is `.github/workflows/refresh-project-previews.yml` and its capture script is `scripts/refresh-project-previews.mjs`. Before its first successful run, the two newly added project images use temporary public-page captures. After a successful run the workflow replaces them with actual local screenshots generated with public or fictional data and bumps the HTML release marker from `studio-20261126-1` to `studio-20261126-2`. The editorial layout, project descriptions, work history, Appearance presets, and Studio behavior are otherwise retained.
